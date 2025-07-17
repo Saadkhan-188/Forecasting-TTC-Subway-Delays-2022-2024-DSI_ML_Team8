@@ -1,7 +1,6 @@
-# DSI_ML_Team8
+# [Draft] DSI_ML_Team8
 
 ## Contents
-* [Draft]#draft
 
 * [Overview](#overview)
 * [Learning Outcomes](#learning-outcomes)
