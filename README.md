@@ -78,8 +78,8 @@ This is a 10-day team sprint running from **July 17 to July 26, 2025**. All work
 |------------|------------------------------------|---------------------------------------------------------------------------|---------------------|
 | July 17    | ✅ Kickoff & Planning              | Finalize dataset, roles, create repo, draft README                        | @Val (PM), Everyone |
 | July 18–19 | 🔍 EDA & Feature Engineering       | Complete EDA, preprocess, create time-based features                      | @Sadd, @Sahil       |
-| July 21    | 🤖 Modeling                        | Train & evaluate logistic regression baseline                             | @Sneha, @Chura      |
-| July 22    | 📊 Visualizations & Recs           | Build charts, identify key trends, draft insights                         | @Sneha, @Chura      |
+| July 21    | 🤖 Modeling                        | Train & evaluate logistic regression baseline                             | @Sneha, @Suchi      |
+| July 22    | 📊 Visualizations & Recs           | Build charts, identify key trends, draft insights                         | @Sneha, @Suchi      |
 | July 23    | 📝 README + Reporting              | Finalize README, visual assets, and insight write-up                      | @Val (PM)           |
 | July 24    | 🎬 Slides + Reflection Videos      | Record individual 3–5 min videos, build team slide deck                   | Everyone            |
 | July 25    | 📦 Final Touches                   | Polish notebooks, test reproducibility, push final GitHub repo            | Everyone            |
