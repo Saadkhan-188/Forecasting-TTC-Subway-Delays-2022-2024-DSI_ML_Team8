@@ -1,6 +1,6 @@
 # 🚇 TTC Subway Delay Data Analysis – DSI_ML_Team8
 
-Analyzing transit delay trends from Toronto’s TTC Subway Delay dataset to uncover actionable insights, build a predictive model, and explore strategies for improving urban mobility.
+Using TTC subway delay data to uncover patterns, build predictive models, and generate actionable recommendations for operational teams—ultimately helping prevent future delays and inform riders earlier for better trip planning.
 
 📁 [Dataset Source (Open Data Toronto)](https://open.toronto.ca/dataset/ttc-subway-delay-data/)
 
