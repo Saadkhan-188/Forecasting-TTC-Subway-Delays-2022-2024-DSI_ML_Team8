@@ -74,16 +74,17 @@ This is a 10-day team sprint running from **July 17 to July 26, 2025**. All work
 
 ## Schedule and Project Plan
 
-| Date       | Phase                      | Key Goals                                                      | Owner(s)                           |
-| ---------- | -------------------------- | -------------------------------------------------------------- | ---------------------------------- |
-| July 17    | Kickoff & Planning         | Finalize dataset, roles, create repo, draft README             | \[@val-poon] (Val), Everyone       |
-| July 18–19 | EDA & Feature Engineering  | Complete EDA, preprocess, create time-based features           | \[@Saadkhan-188], \[@smodi23]      |
-| July 21    | Modeling                   | Train & evaluate logistic regression baseline                  | \[@reachsneha02], \[@suchi-dev-ai] |
-| July 22    | Visualizations & Recs      | Build charts, identify key trends, draft insights              | \[@reachsneha02], \[@suchi-dev-ai] |
-| July 23    | README + Reporting         | Finalize README, visual assets, and insight write-up           | \[@val-poon] (Val)                 |
-| July 24    | Slides + Reflection Videos | Record individual 3–5 min videos, build team slide deck        | Everyone                           |
-| July 25    | Final Touches              | Polish notebooks, test reproducibility, push final GitHub repo | Everyone                           |
-| July 26    | Final Presentation         | Present findings to cohort                                     | Everyone                           |
+| Date       | Phase                   | Key Goals                                                       | Owner(s)                                                                                                                                   |
+|------------|-------------------------|------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| July 17    | Kickoff & Planning      | Finalize dataset, roles, create repo, draft README               | Everyone, [@val-poon](https://github.com/val-poon)                                                                                   |
+| July 18–19 | EDA & Feature Engineering | Complete EDA, preprocess, create time-based features             | [@Saadkhan-188](https://github.com/Saadkhan-188), [@smodi23](https://github.com/smodi23)                                                   |
+| July 21    | Modeling                | Train & evaluate logistic regression baseline                    | [@reachsneha02](https://github.com/reachsneha02), [@suchi-dev-ai](https://github.com/suchi-dev-ai)                                        |
+| July 22    | Visualizations & Recs  | Build charts, identify key trends, draft insights                | [@reachsneha02](https://github.com/reachsneha02), [@suchi-dev-ai](https://github.com/suchi-dev-ai)                                        |
+| July 23    | README + Reporting     | Finalize README, visual assets, and insight write-up             | [@val-poon](https://github.com/val-poon)                                                                                            |
+| July 24    | Slides + Reflection Videos | Record 3–5 min videos, build team slide deck                  | Everyone                                                                                                                                   |
+| July 25    | Final Touches          | Polish notebooks, test reproducibility, push final GitHub repo   | Everyone                                                                                                                                   |
+| July 26    | Final Presentation     | Present findings to cohort                                       | Everyone                                                                                                                                   |
+
 
 
 ---
