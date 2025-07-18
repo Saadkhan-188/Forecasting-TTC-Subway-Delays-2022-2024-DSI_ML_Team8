@@ -136,7 +136,7 @@ DSI_ML_Team8/
 ## Other Resources
 
 - [Team Notion Workspace (Kanban & Docs)](https://www.notion.so/DSI-ML-Team-8-233898e03e6b80b5af9cd0be21df8599)
-- [Slack Channel – DSI Certificate Program]([https://uoftdsicertificates.slack.com/](https://uoft-dsi-certificates.slack.com/archives/C096UPGDKA4))
+- [Slack Channel – DSI Certificate Program](https://uoft-dsi-certificates.slack.com/archives/C096UPGDKA4)
 
 ---
 
