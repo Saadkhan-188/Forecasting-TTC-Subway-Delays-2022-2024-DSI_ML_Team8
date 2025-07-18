@@ -104,18 +104,21 @@ This is a 10-day team sprint running from **July 17 to July 26, 2025**. All work
 
 ## Folder Structure
 
+```
 DSI_ML_Team8/
 ├── data/
-│ ├── raw/ # Unmodified source data
-│ ├── processed/ # Cleaned/engineered datasets
-│ └── external/ # External reference files
-├── notebooks/ # Jupyter notebooks for EDA/modeling
-├── models/ # Serialized models + metrics
-├── visuals/ # Charts, figures for reporting/slides
-├── reports/ # Presentations, summaries, README
-├── src/ # Python scripts, feature tools
+│   ├── raw/         # Unmodified source data
+│   ├── processed/   # Cleaned and engineered datasets
+│   └── external/    # External reference files
+├── notebooks/       # Jupyter notebooks for EDA and modeling
+├── models/          # Serialized models and performance metrics
+├── visuals/         # Charts and figures for reporting and slides
+├── reports/         # Final presentations, summaries, and documentation
+├── src/             # Python scripts and feature engineering tools
 ├── .gitignore
 └── README.md
+```
+
 
 ---
 
