@@ -1,6 +1,6 @@
 # 🚇 TTC Subway Delay Data Analysis – DSI_ML_Team8
 
-Using TTC subway delay data to uncover patterns, build predictive models, and generate actionable recommendations for operational teams—ultimately helping prevent future delays and inform riders earlier for better trip planning.
+We’re exploring five years of Toronto’s TTC subway delay logs to uncover patterns, build predictive models, and offer real-world recommendations—helping prevent future delays and inform commuters earlier for better trip planning.
 
 📁 [Dataset Source (Open Data Toronto)](https://open.toronto.ca/dataset/ttc-subway-delay-data/)
 
@@ -23,7 +23,8 @@ Using TTC subway delay data to uncover patterns, build predictive models, and ge
 
 ## Overview
 
-This project explores the [TTC Subway Delay Data](https://open.toronto.ca/dataset/ttc-subway-delay-data/) provided by the Toronto Transit Commission. By applying machine learning techniques and visual analytics, our team will identify patterns and potential predictive signals for subway delays, focusing on time-based features and operational categories.
+This project analyzes the TTC Subway Delay Data using time-based and operational features. Our focus is to uncover predictive signals around subway disruptions, evaluate delay classification models, and surface insights that could inform both TTC operations and trip planning for riders.
+
 
 ---
 
@@ -43,8 +44,8 @@ By the end of this sprint, we aim to:
 - **Dataset**: [TTC Subway Delay Data](https://open.toronto.ca/dataset/ttc-subway-delay-data/)
 - **Publisher**: Toronto Transit Commission  
 - **Last Refreshed**: June 30, 2025  
-- **Description**: Monthly delay logs across TTC subway lines including time, location, delay cause, duration, and other metadata  
-- **Goal**: Identify delay trends, engineer time-based features, and evaluate predictive models for delay classification or duration estimation
+- **Contents**: Monthly delay logs across subway lines, including time, location, duration, and delay cause  
+- **Objective**: Generate a reproducible machine learning pipeline for delay trend analysis and prediction
 
 ---
 
