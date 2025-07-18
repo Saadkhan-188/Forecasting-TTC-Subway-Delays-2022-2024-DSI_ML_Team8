@@ -6,7 +6,7 @@ Analyzing transit delay trends from Toronto’s TTC Subway Delay dataset to unco
 
 ---
 
-## 📚 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Learning Outcomes](#learning-outcomes)
@@ -21,13 +21,13 @@ Analyzing transit delay trends from Toronto’s TTC Subway Delay dataset to unco
 
 ---
 
-## 🧭 Overview
+## Overview
 
 This project explores the [TTC Subway Delay Data](https://open.toronto.ca/dataset/ttc-subway-delay-data/) provided by the Toronto Transit Commission. By applying machine learning techniques and visual analytics, our team will identify patterns and potential predictive signals for subway delays, focusing on time-based features and operational categories.
 
 ---
 
-## 🎯 Learning Outcomes
+## Learning Outcomes
 
 By the end of this sprint, we aim to:
 
@@ -38,7 +38,7 @@ By the end of this sprint, we aim to:
 
 ---
 
-## 🔍 Project Overview
+## Project Overview
 
 - **Dataset**: [TTC Subway Delay Data](https://open.toronto.ca/dataset/ttc-subway-delay-data/)
 - **Publisher**: Toronto Transit Commission  
@@ -48,7 +48,7 @@ By the end of this sprint, we aim to:
 
 ---
 
-## 🛠 Tools & Libraries
+## Tools & Libraries
 
 We expect to use:
 
@@ -66,13 +66,13 @@ Reflection videos will be linked in this README.
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 This is a 10-day team sprint running from **July 17 to July 26, 2025**. All work will be documented in GitHub, with daily async check-ins on Slack and Notion.
 
 ---
 
-## 📅 Schedule & Project Plan
+## Schedule and Project Plan
 
 | Date       | Phase                              | Key Goals                                                                 | Owner(s)            |
 |------------|------------------------------------|---------------------------------------------------------------------------|---------------------|
@@ -87,7 +87,7 @@ This is a 10-day team sprint running from **July 17 to July 26, 2025**. All work
 
 ---
 
-## 👥 Team Members
+## Team Members
 
 | Name                    | GitHub Handle     | Email                        | Role               | Reflection Video |
 |-------------------------|------------------|------------------------------|--------------------|------------------|
@@ -100,7 +100,7 @@ This is a 10-day team sprint running from **July 17 to July 26, 2025**. All work
 
 ---
 
-## 📁 Folder Structure
+## Folder Structure
 
 DSI_ML_Team8/
 ├── data/
@@ -117,7 +117,7 @@ DSI_ML_Team8/
 
 ---
 
-## 🧑‍🏫 Project Facilitators
+## Project Facilitators
 
 | Role                 | Name              | Email                              |
 |----------------------|-------------------|-------------------------------------|
@@ -128,7 +128,7 @@ DSI_ML_Team8/
 
 ---
 
-## 📎 Other Resources
+## Other Resources
 
 - [Team Notion Workspace (Kanban & Docs)](https://www.notion.so/DSI-ML-Team-8-233898e03e6b80b5af9cd0be21df8599)
 - [Slack Channel – DSI Certificate Program]([https://uoftdsicertificates.slack.com/](https://uoft-dsi-certificates.slack.com/archives/C096UPGDKA4))
