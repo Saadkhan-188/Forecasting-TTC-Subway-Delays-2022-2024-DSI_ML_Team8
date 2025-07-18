@@ -13,7 +13,7 @@ Analyzing transit delay trends from Toronto’s TTC Subway Delay dataset to unco
 - [Project Overview](#project-overview)
 - [Tools & Libraries](#tools--libraries)
 - [Getting Started](#getting-started)
-- [Schedule & Project Plan](#schedule--project-plan)
+- [Schedule and Project Plan](#schedule-and-project-plan)
 - [Team Members](#team-members)
 - [Folder Structure](#folder-structure)
 - [Project Facilitators](#project-facilitators)
