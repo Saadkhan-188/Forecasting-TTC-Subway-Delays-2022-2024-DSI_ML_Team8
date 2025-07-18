@@ -61,7 +61,7 @@ We expect to use:
 - [`SHAP`](https://shap.readthedocs.io/en/latest/) for explainability (optional)  
 - [GitHub](https://github.com/) for version control  
 - [Slack](https://slack.com/) for async communication  
-- [Notion](https://www.notion.so/DSI-ML-Team-8-233898e03e6b80b5af9cd0be21df8599) for documentation & Kanban  
+- [Trello](https://trello.com/invite/b/68784cb94b65902aba3eaf1b/ATTI02762885d9b118c31ccbfa7dacd1992b7739A217/🚇-our-1-week-ttc-delay-ml-mission) for documentation & Kanban  
 
 Reflection videos will be linked in this README.
 
@@ -136,7 +136,7 @@ DSI_ML_Team8/
 
 ## Other Resources
 
-- [Team Notion Workspace (Kanban & Docs)](https://www.notion.so/DSI-ML-Team-8-233898e03e6b80b5af9cd0be21df8599)
+- [Team Trello (Kanban & Docs)](https://trello.com/invite/b/68784cb94b65902aba3eaf1b/ATTI02762885d9b118c31ccbfa7dacd1992b7739A217/🚇-our-1-week-ttc-delay-ml-mission)
 - [Slack Channel – DSI Certificate Program](https://uoft-dsi-certificates.slack.com/archives/C096UPGDKA4)
 
 ---
