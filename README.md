@@ -93,11 +93,11 @@ This is a 10-day team sprint running from **July 17 to July 26, 2025**. All work
 
 | Name                    | GitHub Handle     | Email                        | Role               | Reflection Video |
 |-------------------------|------------------|------------------------------|--------------------|------------------|
-| Valerie Poon            | @val-poon         | valerieyfp@gmail.com         | PM, Reporting      | _TBD_            |
-| Saad Khan               | @saadkhan-dsi     | saadkhan188@gmail.com        | Analyst            | _TBD_            |
-| Sahil Modi              | @sahilmodi-ml     | sahilmodi237@gmail.com       | Analyst            | _TBD_            |
-| Sneha Gupta             | @sneha-gupta-ml   | reachsneha02@gmail.com       | Modeling           | _TBD_            |
-| Sucharitha Sundararaman| @sucharitha-s     | Suchiraman22@gmail.com       | Modeling           | _TBD_            |
+| Valerie Poon            | [@val-poon](https://github.com/val-poon)         | valerieyfp@gmail.com         | PM, Reporting      | _TBD_            |
+| Saad Khan               | [@Saadkhan-188](https://github.com/Saadkhan-188)     | saadkhan188@gmail.com        | Analyst            | _TBD_            |
+| Sahil Modi              | [@smodi23](https://github.com/smodi23)     | sahilmodi237@gmail.com       | Analyst            | _TBD_            |
+| Sneha Gupta             | [@reachsneha02](https://github.com/reachsneha02)   | reachsneha02@gmail.com       | Modeling           | _TBD_            |
+| Sucharitha Sundararaman| [@suchi-dev-ai](https://github.com/suchi-dev-ai)     | Suchiraman22@gmail.com       | Modeling           | _TBD_            |
 | Faiz Shaikh             | _TBD_             | _TBD_                        | TBD (away)         | _TBD_            |
 
 ---
