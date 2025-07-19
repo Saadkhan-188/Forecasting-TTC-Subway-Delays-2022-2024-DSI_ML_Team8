@@ -1,76 +1,104 @@
 """
-Step 1.1 — TTC Delay Dataset: Automated Downloader Script
-----------------------------------------------------------
+🔧 ### 1.2 Download TTC Delay Files (Offline) to Data > Raw > [Package]
 
-📌 PURPOSE:
-This script connects to the City of Toronto Open Data API and downloads all relevant
-TTC Streetcar Delay data files. The files are saved in `data/raw/` for further use.
+Description:
+This script handles the cleaning of TTC Subway Delay datasets downloaded from the City of Toronto Open Data Portal.
 
-🧾 PREREQUISITES:
-1. The virtual environment is activated (`.venv` is active).
-2. Required Python packages are installed (e.g., `requests`).
-3. Directory structure is created and verified:
-    - Project root contains: `data/raw/`, `src/api/`, and `README.md`.
-    - Run this script from the project root, e.g.:
-      ```bash
-      python src/api/download_data.py
-      ```
+Supported File Formats:
+- .csv
+- .xls
+- .xlsx
 
-✅ VERIFY:
-- Ensure `data/raw/` folder gets populated with `.csv` files after script is run.
-- Check the terminal logs to confirm download and save success.
+Main Cleaning Tasks:
+- Remove duplicate rows
+- Standardize column names (lowercase, snake_case)
+- Handle bad lines and encoding issues
+- Log all successes and failures to: logs/data_cleaning.log
 
+Input:
+- Folder: data/raw/ttc-subway-delay-data
+- Files: Mixed-format TTC delay data files (.csv/.xls/.xlsx)
+
+Output:
+- Folder: data/processed/ttc-subway-delay-data
+- Files: Cleaned `.csv` files, named identically to source but standardized
+
+Usage:
+Run this file directly as a standalone script:
+
+```bash
+python src/pipeline/data_cleaning.py
+```
+
+Author: DSI Team 8 | Maintainer: Saad Khan
 """
 
-# 🧱 Libraries
-import os           # for working with file paths
-import requests     # to make HTTP requests to Open Data API
+import requests
+from pathlib import Path
 
-# 🌐 Constants
-BASE_URL = "https://ckan0.cf.opendata.inter.prod-toronto.ca"  # Base API endpoint
-PACKAGE_NAME = "ttc-streetcar-delay-data"                     # Dataset name from Toronto Open Data
-RAW_DATA_DIR = "data/raw/"                                    # Output directory for downloaded files
+def download_ckan_package_resources(package_name: str, base_url: str = "https://ckan0.cf.opendata.inter.prod-toronto.ca/api/3/action/package_show"):
+    """
+    Downloads all resources from a CKAN package by package_name.
 
-# 📁 Ensure target directory exists before saving files
-if not os.path.exists(RAW_DATA_DIR):
-    print(f"📂 Directory '{RAW_DATA_DIR}' does not exist. Creating it now...")
-    os.makedirs(RAW_DATA_DIR, exist_ok=True)
-else:
-    print(f"📂 Directory '{RAW_DATA_DIR}' already exists. Proceeding with downloads.")
+    Args:
+        package_name (str): The CKAN package ID to download resources from.
+        base_url (str): CKAN API endpoint for package_show.
 
-# STEP 1️⃣ — Get dataset (package) metadata from the CKAN API
-package_url = f"{BASE_URL}/api/3/action/package_show"
-params = { "id": PACKAGE_NAME }
-response = requests.get(package_url, params=params)
-package = response.json()
+    Saves:
+        Files are saved under data/raw/<package_name>/ directory with original filenames.
+    """
+    # Prepare directories
+    output_dir = Path("data/raw") / package_name
+    output_dir.mkdir(parents=True, exist_ok=True)
+    print(f"📥 Downloading resources for package: {package_name}")
+    print(f"➡️ Saving files to: {output_dir}")
 
-# STEP 2️⃣ — Loop through all available resources in the dataset
-for resource in package["result"]["resources"]:
+    # Fetch package metadata
+    response = requests.get(base_url, params={"id": package_name})
+    response.raise_for_status()
+    package_data = response.json()
 
-    # 🎯 Only download non-database (static file) resources
-    if not resource["datastore_active"]:
-        resource_id = resource["id"]
+    if not package_data.get("success"):
+        raise Exception(f"Failed to fetch package info for {package_name}")
 
-        # 📝 Clean up resource name to use as a valid filename
-        import re
-        resource_name = re.sub(r'[\\/*?:"<>|\t]', '_', resource["name"]).strip()
+    resources = package_data["result"]["resources"]
+    print(f"🔍 Found {len(resources)} resources to download.")
 
-        # STEP 3️⃣ — Get metadata to extract direct download URL
-        resource_meta_url = f"{BASE_URL}/api/3/action/resource_show?id={resource_id}"
-        resource_meta = requests.get(resource_meta_url).json()
-        file_url = resource_meta["result"]["url"]
+    for resource in resources:
+        resource_name = resource.get("name")
+        resource_url = resource.get("url")
+        resource_format = resource.get("format")
 
-        # STEP 4️⃣ — Download the resource file
-        print(f"📥 Downloading {resource_name}...")
-        file_content = requests.get(file_url).content
+        if not resource_url:
+            print(f"⚠️ Skipping resource '{resource_name}' because it has no URL.")
+            continue
 
-        # STEP 5️⃣ — Save the downloaded content to /data/raw/
-        file_path = os.path.join(RAW_DATA_DIR, f"{resource_name}.csv")
-        with open(file_path, "wb") as f:
-            f.write(file_content)
+        # Determine output file path
+        file_name = resource_name.strip().replace(" ", "_") + "." + resource_format.lower()
+        file_path = output_dir / file_name
 
-        print(f"✅ Saved to {file_path}")
-# This script automates the download of TTC Streetcar Delay data from the City of Toronto's Open Data API.
-# It retrieves metadata about the dataset, loops through available resources, and saves each file in the
-# `data/raw/` downloaded content to /data/raw/ directory with a cleaned filename.
-# It ensures the target directory exists before downloading and provides feedback on the download process.
+        # Check if file exists
+        if file_path.exists():
+            user_input = input(f"File '{file_name}' already exists. Overwrite? (y/n): ").strip().lower()
+            if user_input != "y":
+                print(f"Skipping '{file_name}'")
+                continue
+
+        # Download the file
+        try:
+            print(f"Downloading '{file_name}' from {resource_url}...")
+            r = requests.get(resource_url, stream=True)
+            r.raise_for_status()
+
+            with open(file_path, "wb") as f:
+                for chunk in r.iter_content(chunk_size=8192):
+                    if chunk:
+                        f.write(chunk)
+            print(f"✅ Saved '{file_name}'")
+        except Exception as e:
+            print(f"❌ Failed to download '{file_name}': {e}")
+
+if __name__ == "__main__":
+    # Replace PACKAGE_NAME with the dataset id you want to download
+    PACKAGE_NAME = "ttc-subway-delay-data"
+    download_ckan_package_resources(PACKAGE_NAME)

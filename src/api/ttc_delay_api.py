@@ -1,71 +1,142 @@
-# Import the necessary libraries
-# Flask is used to create the API
-# jsonify converts Python dictionaries/lists into JSON format for HTTP responses
-from flask import Flask, jsonify
+"""
+TTC_Delay_API.py 🚦
+-----------------------------------
 
-# requests is used to make HTTP requests to the City of Toronto open data API
+✅ PURPOSE:
+
+This is Step 1.1 in the Data Pipeline:
+
+A lightweight Flask API to interact with the TTC Streetcar/Subway Delay datasets
+hosted on the City of Toronto Open Data portal.
+
+👥 Intended for: Developers, Analysts, and Data Scientists building tools or pipelines
+off Toronto mobility data.
+
+📂 Project Folder Location: `src/api/TTC_Delay_API.py`
+
+-----------------------------------
+
+📌 USER JOURNEY CHECKLIST (How to Use This API)
+
+1️⃣ [Setup] Activate your virtual environment:
+    $ source .venv/bin/activate  (Mac/Linux)
+    $ .venv\Scripts\activate     (Windows)
+
+2️⃣ [Run API] From project root, start the Flask server:
+    $ python src/api/TTC_Delay_API.py
+
+3️⃣ [Access Home] Open a browser:
+    👉 http://127.0.0.1:5000/
+    🧭 You'll see available endpoints and usage hints
+
+4️⃣  [Search Any Dataset] Use:
+    👉 http://127.0.0.1:5000/search?q=ttc
+    🔍 Search Toronto Open Data by keyword (e.g., "mobility", "housing", "climate")
+
+    4️⃣.1 Copy the "name" value
+    This is the dataset ID you'll pass to the API:
+    PACKAGE_NAME = "ttc-subway-delay-data"
+-----------------------------------
+✅ EXPECTED RESULT:
+    You should get JSON responses listing datasets or download links for TTC delays.
+
+💡 NEXT STEP:
+    Once you’ve confirmed the API gives correct TTC file URLs,
+    1️⃣ Copy the "name" value
+    This is the dataset ID you'll pass to the API:
+    PACKAGE_NAME = "ttc-subway-delay-data"
+
+
+    
+
+##🔹 TIP:
+Extend this file by adding new routes or wrapping it inside a larger ETL orchestrator.
+This is a standalone microservice designed to plug into a modular ML pipeline.
+
+"""
+
+# ------------------------------------------------
+# 🔧 Imports
+# ------------------------------------------------
+from flask import Flask, jsonify, request
 import requests
 
-# Create a Flask application instance
-app = Flask(__name__)
-
-# Base URL for the Toronto Open Data portal
+# ------------------------------------------------
+# 🌐 Constants
+# ------------------------------------------------
 BASE_URL = "https://ckan0.cf.opendata.inter.prod-toronto.ca"
-
-# This is the unique identifier (called "package name") for the TTC Streetcar Delay dataset
 PACKAGE_NAME = "ttc-streetcar-delay-data"
 
-# Define an API route (endpoint) at "/get-delays"
-# When a user accesses this URL with a GET request, the function below will run
-@app.route('/get-delays', methods=['GET'])
-def get_delays():
-    # Construct the full API endpoint to retrieve metadata about the dataset
-    package_url = f"{BASE_URL}/api/3/action/package_show"
-    
-    # The API expects the package name (dataset name) as a parameter
-    params = { "id": PACKAGE_NAME }
+# ------------------------------------------------
+# 🚀 Initialize Flask app
+# ------------------------------------------------
+app = Flask(__name__)
 
-    # Make an HTTP GET request to the CKAN API to get the dataset package metadata
-    package = requests.get(package_url, params=params).json()
-
-    # Create a list to hold the resource URLs and names
-    results = []
-
-    # Loop through each "resource" in the dataset
-    # A dataset (package) may contain several files or tables called "resources"
-    for resource in package["result"]["resources"]:
-        
-        # If the resource is NOT "datastore_active", it usually means it's a file (CSV, Excel, etc.)
-        if not resource["datastore_active"]:
-            # Construct the URL to get more metadata about this specific resource
-            resource_url = f"{BASE_URL}/api/3/action/resource_show?id={resource['id']}"
-
-            # Request the metadata
-            resource_metadata = requests.get(resource_url).json()
-
-            # Extract the download URL and resource name and add them to the results list
-            results.append({
-                "name": resource["name"],  # Name of the resource (e.g., "Streetcar Delay Data - 2023")
-                "url": resource_metadata["result"]["url"]  # Direct URL to download the file
-            })
-
-    # Return the result as a JSON response to the API caller
-    return jsonify(results)
-
-# Only run the Flask development server if this file is executed directly
-# This block prevents the server from running if the file is imported as a module
-if __name__ == "__main__":
-    # Start the server in debug mode so you can see real-time errors/logs
-    app.run(debug=True)
-# This code defines a simple Flask API that retrieves TTC streetcar delay data from the City of Toronto's open data portal.
-# It fetches metadata about the dataset and provides download links for the resources available in the dataset.
-
-# The API can be accessed at the "/get-delays" endpoint, which returns a JSON list of resource names and their download URLs.   
-
-# The server runs in debug mode, which is useful for development and testing.   
-
+# ------------------------------------------------
+# 🏠 ROUTE: Home Page (Welcome)
+# ------------------------------------------------
 @app.route('/', methods=['GET'])
 def home():
-    return "<h2>Welcome to the TTC Delay API</h2><p>Use <code>/get-delays</code> to access delay data.</p>"
+    return """
+    <h2>🚦 TTC Delay Data API</h2>
+    <p>Welcome! Use the following endpoints:</p>
+    <ul>
+        <li><code>/get-delays</code> – List all available TTC delay CSVs</li>
+        <li><code>/search?q=your_query</code> – Search any dataset by keyword</li>
+    </ul>
+    """
 
-# click here http://127.0.0.1:5000/get-delays
+# ------------------------------------------------
+# 📥 ROUTE: Get delay file download links
+# ------------------------------------------------
+@app.route('/get-delays', methods=['GET'])
+def get_delays():
+    package_url = f"{BASE_URL}/api/3/action/package_show"
+    params = { "id": PACKAGE_NAME }
+    package = requests.get(package_url, params=params).json()
+
+    results = []
+
+    for resource in package["result"]["resources"]:
+        if not resource["datastore_active"]:
+            resource_url = f"{BASE_URL}/api/3/action/resource_show?id={resource['id']}"
+            resource_metadata = requests.get(resource_url).json()
+            results.append({
+                "name": resource["name"],
+                "url": resource_metadata["result"]["url"]
+            })
+
+    return jsonify(results)
+
+# ------------------------------------------------
+# 🔍 ROUTE: Keyword-based search for other datasets
+# ------------------------------------------------
+@app.route('/search', methods=['GET'])
+def search_dataset():
+    query = request.args.get('q', '')
+    if not query:
+        return jsonify({"error": "Please provide a search query using ?q=term"})
+
+    search_url = f"{BASE_URL}/api/3/action/package_search"
+    response = requests.get(search_url, params={"q": query})
+    results = response.json()["result"]["results"]
+
+    output = []
+    for dataset in results:
+        output.append({
+            "title": dataset.get("title"),
+            "name": dataset.get("name"),
+            "organization": dataset.get("organization", {}).get("title", "N/A"),
+            "num_resources": len(dataset.get("resources", [])),
+            "url": f"https://open.toronto.ca/dataset/{dataset.get('name')}/"
+        })
+
+    return jsonify(output)
+
+# ------------------------------------------------
+# 🧪 Run the Flask server
+# ------------------------------------------------
+if __name__ == "__main__":
+    app.run(debug=True)
+
+

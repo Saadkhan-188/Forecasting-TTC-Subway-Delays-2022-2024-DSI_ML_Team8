@@ -1,0 +1,109 @@
+2025-07-19 17:07:39 | INFO | Scanning for CSV files in: data\raw\ttc-subway-delay-data
+2025-07-19 17:07:39 | INFO | CSV Files Found in Input Directory:
+2025-07-19 17:07:39 | INFO | - Code Descriptions.csv.csv
+2025-07-19 17:07:39 | INFO | - Code Descriptions.json.csv
+2025-07-19 17:07:39 | INFO | - Code Descriptions.xml.csv
+2025-07-19 17:07:39 | INFO | - TTC Subway Delay Data since 2025.csv.csv
+2025-07-19 17:07:39 | INFO | - TTC Subway Delay Data since 2025.json.csv
+2025-07-19 17:07:39 | INFO | - TTC Subway Delay Data since 2025.xml.csv
+2025-07-19 17:07:39 | INFO | - ttc-subway-delay-codes.csv
+2025-07-19 17:07:39 | INFO | - ttc-subway-delay-data-2018.csv
+2025-07-19 17:07:39 | INFO | - ttc-subway-delay-data-2019.csv
+2025-07-19 17:07:39 | INFO | - ttc-subway-delay-data-2020.csv
+2025-07-19 17:07:39 | INFO | - ttc-subway-delay-data-2021.csv
+2025-07-19 17:07:39 | INFO | - ttc-subway-delay-data-2022.csv
+2025-07-19 17:07:39 | INFO | - ttc-subway-delay-data-2023.csv
+2025-07-19 17:07:39 | INFO | - ttc-subway-delay-data-2024.csv
+2025-07-19 17:07:39 | INFO | - ttc-subway-delay-data-readme.csv
+2025-07-19 17:07:39 | INFO | - ttc-subway-delay-jan-2014-april-2017.csv
+2025-07-19 17:07:39 | INFO | - ttc-subway-delay-may-december-2017.csv
+2025-07-19 17:07:39 | INFO | Cleaned and saved: data\processed\ttc-subway-delay-data\Code Descriptions.csv.csv [encoding=utf-8]
+2025-07-19 17:07:40 | INFO | Cleaned and saved: data\processed\ttc-subway-delay-data\Code Descriptions.json.csv [encoding=utf-8]
+2025-07-19 17:07:40 | INFO | Cleaned and saved: data\processed\ttc-subway-delay-data\Code Descriptions.xml.csv [encoding=utf-8]
+2025-07-19 17:07:40 | INFO | Cleaned and saved: data\processed\ttc-subway-delay-data\TTC Subway Delay Data since 2025.csv.csv [encoding=utf-8]
+2025-07-19 17:32:49 | INFO | Cleaned and saved: data\processed\ttc-subway-delay-data\TTC Subway Delay Data since 2025.json.csv [encoding=utf-8]
+2025-07-19 17:32:50 | INFO | Cleaned and saved: data\processed\ttc-subway-delay-data\TTC Subway Delay Data since 2025.xml.csv [encoding=utf-8]
+2025-07-19 17:32:50 | ERROR | Failed to process ttc-subway-delay-codes.csv: Error tokenizing data. C error: Expected 2 fields in line 5, saw 3
+
+2025-07-19 17:32:50 | ERROR | Failed to process ttc-subway-delay-data-2018.csv: Error tokenizing data. C error: Expected 1 fields in line 3, saw 3
+
+2025-07-19 17:32:50 | ERROR | Failed to process ttc-subway-delay-data-2019.csv: Error tokenizing data. C error: Expected 1 fields in line 3, saw 3
+
+2025-07-19 17:32:50 | ERROR | Failed to process ttc-subway-delay-data-2020.csv: Error tokenizing data. C error: Expected 1 fields in line 3, saw 3
+
+2025-07-19 17:32:50 | ERROR | Failed to process ttc-subway-delay-data-2021.csv: Error tokenizing data. C error: Expected 1 fields in line 3, saw 3
+
+2025-07-19 17:32:50 | ERROR | Failed to process ttc-subway-delay-data-2022.csv: Error tokenizing data. C error: Expected 2 fields in line 3, saw 3
+
+2025-07-19 17:32:50 | ERROR | Failed to process ttc-subway-delay-data-2023.csv: Error tokenizing data. C error: Expected 2 fields in line 12, saw 4
+
+2025-07-19 17:32:50 | ERROR | Failed to process ttc-subway-delay-data-2024.csv: Error tokenizing data. C error: Expected 2 fields in line 8, saw 4
+
+2025-07-19 17:32:50 | ERROR | Failed to process ttc-subway-delay-data-readme.csv: Error tokenizing data. C error: Expected 2 fields in line 9, saw 3
+
+2025-07-19 17:32:50 | ERROR | Failed to process ttc-subway-delay-jan-2014-april-2017.csv: Error tokenizing data. C error: Expected 1 fields in line 4, saw 2
+
+2025-07-19 17:32:50 | ERROR | Failed to process ttc-subway-delay-may-december-2017.csv: Error tokenizing data. C error: Expected 2 fields in line 13, saw 5
+
+2025-07-19 17:32:50 | INFO | All eligible files cleaned and saved to: data\processed\ttc-subway-delay-data
+2025-07-19 17:41:52,613 | INFO | \u2705 Cleaned CSV: Code Descriptions.csv.csv
+2025-07-19 17:41:52,650 | INFO | \u2705 Cleaned CSV: Code Descriptions.json.csv
+2025-07-19 17:41:52,658 | INFO | \u2705 Cleaned CSV: Code Descriptions.xml.csv
+2025-07-19 17:41:52,745 | INFO | \u2705 Cleaned CSV: TTC Subway Delay Data since 2025.csv.csv
+2025-07-19 17:48:42,118 | INFO | \u2705 Cleaned CSV: TTC Subway Delay Data since 2025.json.csv
+2025-07-19 17:48:42,213 | INFO | \u2705 Cleaned CSV: TTC Subway Delay Data since 2025.xml.csv
+2025-07-19 17:48:42,214 | ERROR | \u274c Failed to process ttc-subway-delay-codes.csv (.csv): Error tokenizing data. C error: Buffer overflow caught - possible malformed input file.
+
+2025-07-19 17:48:42,229 | ERROR | \u274c Failed to process ttc-subway-delay-data-2018.csv (.csv): Error tokenizing data. C error: Buffer overflow caught - possible malformed input file.
+
+2025-07-19 17:48:42,246 | ERROR | \u274c Failed to process ttc-subway-delay-data-2019.csv (.csv): Error tokenizing data. C error: Buffer overflow caught - possible malformed input file.
+
+2025-07-19 17:48:42,262 | ERROR | \u274c Failed to process ttc-subway-delay-data-2020.csv (.csv): Error tokenizing data. C error: Buffer overflow caught - possible malformed input file.
+
+2025-07-19 17:48:42,278 | ERROR | \u274c Failed to process ttc-subway-delay-data-2021.csv (.csv): Error tokenizing data. C error: Buffer overflow caught - possible malformed input file.
+
+2025-07-19 17:48:42,287 | ERROR | \u274c Failed to process ttc-subway-delay-data-2022.csv (.csv): 'utf-8' codec can't decode bytes in position 0-1: invalid continuation byte
+2025-07-19 17:48:42,294 | ERROR | \u274c Failed to process ttc-subway-delay-data-2023.csv (.csv): 'utf-8' codec can't decode bytes in position 0-1: invalid continuation byte
+2025-07-19 17:48:42,303 | ERROR | \u274c Failed to process ttc-subway-delay-data-2024.csv (.csv): 'utf-8' codec can't decode bytes in position 0-1: invalid continuation byte
+2025-07-19 17:48:42,304 | WARNING | Skipping README file: ttc-subway-delay-data-readme.csv
+2025-07-19 17:48:42,322 | ERROR | \u274c Failed to process ttc-subway-delay-jan-2014-april-2017.csv (.csv): Error tokenizing data. C error: Buffer overflow caught - possible malformed input file.
+
+2025-07-19 17:48:42,332 | ERROR | \u274c Failed to process ttc-subway-delay-may-december-2017.csv (.csv): 'utf-8' codec can't decode byte 0xfa in position 0: invalid start byte
+2025-07-19 17:48:44,470 | INFO | Read CSV file Code Descriptions.csv.csv with utf-8 encoding
+2025-07-19 17:48:44,483 | INFO | \u2705 Cleaned and saved Code Descriptions.csv.csv
+2025-07-19 17:48:44,535 | INFO | Read CSV file Code Descriptions.json.csv with utf-8 encoding
+2025-07-19 17:48:44,718 | INFO | \u2705 Cleaned and saved Code Descriptions.json.csv
+2025-07-19 17:48:44,723 | INFO | Read CSV file Code Descriptions.xml.csv with utf-8 encoding
+2025-07-19 17:48:44,728 | INFO | \u2705 Cleaned and saved Code Descriptions.xml.csv
+2025-07-19 17:48:44,757 | INFO | Read CSV file TTC Subway Delay Data since 2025.csv.csv with utf-8 encoding
+2025-07-19 17:48:44,846 | INFO | \u2705 Cleaned and saved TTC Subway Delay Data since 2025.csv.csv
+2025-07-19 18:19:50,505 | INFO | Found 13 CSV files to clean in data\raw\ttc-subway-delay-data-format_converted
+2025-07-19 18:19:50,561 | INFO | Cleaned and saved Code_Descriptions.xml.csv to data\processed\ttc-subway-delay-data\Code_Descriptions.xml.csv
+2025-07-19 18:19:50,577 | INFO | Cleaned and saved ttc-subway-delay-codes.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-codes.csv
+2025-07-19 18:19:50,624 | INFO | Cleaned and saved ttc-subway-delay-data-2018.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-data-2018.csv
+2025-07-19 18:19:50,672 | INFO | Cleaned and saved ttc-subway-delay-data-2019.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-data-2019.csv
+2025-07-19 18:19:50,699 | INFO | Cleaned and saved ttc-subway-delay-data-2020.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-data-2020.csv
+2025-07-19 18:19:50,730 | INFO | Cleaned and saved ttc-subway-delay-data-2021.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-data-2021.csv
+2025-07-19 18:19:50,936 | INFO | Cleaned and saved ttc-subway-delay-data-2022.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-data-2022.csv
+2025-07-19 18:19:51,240 | INFO | Cleaned and saved ttc-subway-delay-data-2023.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-data-2023.csv
+2025-07-19 18:19:51,513 | INFO | Cleaned and saved ttc-subway-delay-data-2024.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-data-2024.csv
+2025-07-19 18:19:51,524 | INFO | Cleaned and saved ttc-subway-delay-data-readme.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-data-readme.csv
+2025-07-19 18:19:52,177 | INFO | Cleaned and saved ttc-subway-delay-jan-2014-april-2017.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-jan-2014-april-2017.csv
+2025-07-19 18:19:52,224 | INFO | Cleaned and saved ttc-subway-delay-may-december-2017.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-may-december-2017.csv
+2025-07-19 18:19:52,370 | INFO | Cleaned and saved TTC_Subway_Delay_Data_since_2025.xml.csv to data\processed\ttc-subway-delay-data\TTC_Subway_Delay_Data_since_2025.xml.csv
+2025-07-19 18:19:52,371 | INFO | Data cleaning complete. Clean files saved to data\processed\ttc-subway-delay-data
+2025-07-19 18:35:24,045 | INFO | Found 13 CSV files to clean in data\raw\ttc-subway-delay-data-format_converted
+2025-07-19 18:35:24,082 | INFO | Cleaned and saved Code_Descriptions.xml.csv to data\processed\ttc-subway-delay-data\Code_Descriptions.xml.csv
+2025-07-19 18:35:24,098 | INFO | Cleaned and saved ttc-subway-delay-codes.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-codes.csv
+2025-07-19 18:35:24,147 | INFO | Cleaned and saved ttc-subway-delay-data-2018.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-data-2018.csv
+2025-07-19 18:35:24,215 | INFO | Cleaned and saved ttc-subway-delay-data-2019.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-data-2019.csv
+2025-07-19 18:35:24,253 | INFO | Cleaned and saved ttc-subway-delay-data-2020.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-data-2020.csv
+2025-07-19 18:35:24,297 | INFO | Cleaned and saved ttc-subway-delay-data-2021.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-data-2021.csv
+2025-07-19 18:35:24,567 | INFO | Cleaned and saved ttc-subway-delay-data-2022.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-data-2022.csv
+2025-07-19 18:35:24,802 | INFO | Cleaned and saved ttc-subway-delay-data-2023.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-data-2023.csv
+2025-07-19 18:35:25,067 | INFO | Cleaned and saved ttc-subway-delay-data-2024.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-data-2024.csv
+2025-07-19 18:35:25,075 | INFO | Cleaned and saved ttc-subway-delay-data-readme.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-data-readme.csv
+2025-07-19 18:35:25,927 | INFO | Cleaned and saved ttc-subway-delay-jan-2014-april-2017.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-jan-2014-april-2017.csv
+2025-07-19 18:35:25,968 | INFO | Cleaned and saved ttc-subway-delay-may-december-2017.csv to data\processed\ttc-subway-delay-data\ttc-subway-delay-may-december-2017.csv
+2025-07-19 18:35:26,106 | INFO | Cleaned and saved TTC_Subway_Delay_Data_since_2025.xml.csv to data\processed\ttc-subway-delay-data\TTC_Subway_Delay_Data_since_2025.xml.csv
+2025-07-19 18:35:26,107 | INFO | Data cleaning complete. Clean files saved to data\processed\ttc-subway-delay-data
