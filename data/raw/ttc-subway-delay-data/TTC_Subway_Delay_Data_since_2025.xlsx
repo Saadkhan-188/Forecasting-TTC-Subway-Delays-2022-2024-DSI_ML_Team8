@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 _id,Date,Time,Day,Station,Code,Min Delay,Min Gap,Bound,Line,Vehicle
+=======
+_id,Date,Time,Day,Station,Code,Min Delay,Min Gap,Bound,Line,Vehicle
+>>>>>>> 804fdd5ffc11025b1a7a4ad3a77889966f0e7142
 1,2025-01-01,02:10,Wednesday,BATHURST STATION,MUSAN,5,9,E,BD,5227
 2,2025-01-01,02:30,Wednesday,DUNDAS STATION,MUIRS,0,0,None,YU,0
 3,2025-01-01,02:32,Wednesday,BROADVIEW STATION,PUMST,0,0,E,BD,0
