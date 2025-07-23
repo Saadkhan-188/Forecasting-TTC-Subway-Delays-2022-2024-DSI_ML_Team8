@@ -15,6 +15,7 @@
   - [Feature Engineering](#feature-engineering-in-progress)
   - [Modeling](#modeling)
 - [Key Signals (Preliminary)](#key-signals-preliminary)
+- [Risks & Limitations](#risks--limitations)
 - [Team & Contributions](#team--contributions)
 - [Next Steps](#next-steps)
 - [Acknowledgments](#acknowledgments)
@@ -161,7 +162,17 @@ DSI_ML_Team8/
   - `station`  
   - `day_of_week`  
   - `code` (mapped via lookup table)  
-- XGBoost is the top-performing model in both classification and regression  
+- XGBoost is the top-performing model in both classification and regression
+
+## Risks & Limitations
+
+- **Short sprint window (10 days)**: Limited time restricted deeper hyperparameter tuning and model generalization.
+- **Data quality constraints**: Training was limited to 2022–2024 data due to time constraints, which may reduce model accuracy from underexposure to historical patterns.
+- **Scope exclusions**: External events (e.g., weather, emergency services, medical incidents) were excluded, despite their real-world impact on delays.
+- **Not production-ready**: Current prototype is not integrated with real-time systems or live data pipelines.
+
+These risks highlight areas for future exploration and refinement.
+
 
 ## Team & Contributions
 
