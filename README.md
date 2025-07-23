@@ -74,7 +74,9 @@ This tool supports:
 
 - Rush-hour service planning  
 - Real-time alert prioritization  
-- Data-informed communication with riders  
+- Data-informed communication with riders
+
+This tool is intended to be a **reproducible, reusable foundation** for future delay mitigation planning.
 
 ## Scope
 
