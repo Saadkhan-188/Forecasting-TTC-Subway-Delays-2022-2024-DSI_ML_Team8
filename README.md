@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [Problem Context](#problem-context)
+- [Financial Impact](#financial-impact)
 - [Objective](#objective)
 - [Scope](#scope)
 - [Sprint Timeline](#sprint-timeline)
@@ -26,9 +27,36 @@
 For many Toronto commuters, subway delays are a frustratingly common experience. Riders face long wait times, vague announcements, and limited insight into when service will resume. These frustrations regularly surface on Reddit, X (formerly Twitter), TTC board meetings, and city council reports.
 
 In 2023 alone, the TTC logged over **23,000 subway delays**  
-([TTC Service Summary, 2022–2023](https://www.ttc.ca/-/media/Project/TTC/DevProto/Documents/Home/Transparency-and-accountability/Service-Summary_2022-11-20.pdf)),  
-impacting more than **625,000 daily riders on Line 1**  
-([TTC Subway Ridership, 2023–2024](https://cdn.ttc.ca/-/media/Project/TTC/DevProto/Documents/Home/Transparency-and-accountability/Subway-Ridership-20232024.pdf)).
+([TTC Service Summary, 2022–2023](https://www.ttc.ca/-/media/Project/TTC/DevProto/Documents/Home/Transparency-and-accountability/Service-Summary_2022-11-20.pdf)) 
+This impacts more than **625,000 daily riders on Line 1**  
+([TTC Subway Ridership, 2023–2024](https://cdn.ttc.ca/-/media/Project/TTC/DevProto/Documents/Home/Transparency-and-accountability/Subway-Ridership-20232024.pdf))
+
+## Financial Impact
+
+Toronto’s subway delays aren’t just an inconvenience—they’re costly.
+
+A 2023 analysis by *City Hall Watcher* reported an average of **5,903 subway delay minutes per month**, up from **3,853 minutes** in 2019—a **53% increase** in service disruptions ([City Hall Watcher, 2023](https://toronto.cityhallwatcher.com/p/chw257)).
+
+While TTC doesn’t publish a per-minute cost of delays, we can extrapolate from international studies and Canadian context:
+
+| Estimate Source | Metric | Delay Cost Assumption | Monthly Cost | Annual Cost |
+|------------------|--------|------------------------|--------------|-------------|
+| NYC Comptroller (2017) | Major delay cost (USD) | $50–$100/minute | ~$295,000+ | ~$3.5M+ CAD |
+| Modeled for TTC | 5,903 delay mins × $50 CAD/min | Conservative | ~$295,150 CAD | ~$3.54M CAD |
+
+(Source: [ITS Canada Transit Delay Study](https://www.itscanada.ca/files/ITS%20Student%20Competition_Alaa%20Itani.pdf))
+
+To put this in context, the TTC’s 2025 operating budget is **$2.38 billion CAD**, with only **26% covered by fares**—the rest subsidized by public funds ([Global News, 2024](https://globalnews.ca/news/10702607/canada-public-transit-funding-shortfall/)).
+
+### Why This Matters
+
+Our project aims to forecast delay trends and uncover contributing factors using TTC’s real-world data. This can help:
+
+- Reduce unplanned service costs  
+- Support operational planning  
+- Improve rider satisfaction and public accountability  
+- Justify proactive infrastructure investment
+
 
 City councillors, transit users, and TTC board members continue to call for **data-informed strategies** to improve service reliability, transparency, and rider trust.
 
