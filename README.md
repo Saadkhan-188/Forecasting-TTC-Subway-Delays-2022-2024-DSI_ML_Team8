@@ -1,178 +1,151 @@
-# 🚇 TTC Subway Delay Data Analysis – DSI\_ML\_Team8
-
-We’re exploring **three years** of Toronto’s TTC subway delay logs (2022–2024) to uncover patterns, build predictive models, and offer real-world recommendations — helping transit agencies gain foresight to take preventative operational measures against recurring delays and commuters plan smarter.
-
-📁 [Dataset Source (Open Data Toronto)](https://open.toronto.ca/dataset/ttc-subway-delay-data/)
-
----
+# Forecasting TTC Subway Delays (2022–2024)
 
 ## Table of Contents
 
-* [Problem Context](#problem-context)
-* [Learning Outcomes](#learning-outcomes)
-* [Dataset Summary](#dataset-summary)
-* [Industry Context](#industry-context)
-* [Value Proposition](#value-proposition)
-* [Tools & Libraries](#tools--libraries)
-* [Getting Started](#getting-started)
-* [Schedule and Project Plan](#schedule-and-project-plan)
-* [Team Members](#team-members)
-* [Analytical Plan](#analytical-plan)
-* [Known Risks](#known-risks)
-* [Folder Structure](#folder-structure)
-* [Project Facilitators](#project-facilitators)
-* [Other Resources](#other-resources)
+- [Problem Context](#problem-context)
+- [Objective](#objective)
+- [Scope](#scope)
+- [Sprint Timeline](#sprint-timeline)
+- [Business Problem](#business-problem)
+- [Dataset Source](#dataset-source)
+- [Folder Structure](#folder-structure)
+- [Methodology](#methodology)
+  - [Data Cleaning](#data-cleaning)
+  - [Feature Engineering](#feature-engineering-in-progress)
+  - [Modeling](#modeling)
+- [Key Signals (Preliminary)](#key-signals-preliminary)
+- [Team & Contributions](#team--contributions)
+- [Next Steps](#next-steps)
+- [Acknowledgments](#acknowledgments)
 
----
 
 ## Problem Context
 
-Toronto commuters frequently express frustration with unpredictable TTC subway delays — citing long wait times, vague announcements, and inconsistent communication. These complaints surface across Reddit threads, Twitter posts, local news outlets, and formal transit surveys. A 2024 Reddit analysis reported over **23,000 logged subway delays** in a single year ([source](https://www.reddit.com/r/toronto/comments/10b3otc/ttc_delay_data_analysis_2023/)), while Line 1 alone serves over **625,000 daily riders** ([Wikipedia](https://en.wikipedia.org/wiki/Line_1_Yonge%E2%80%93University)). Councillors and passengers alike have called for better coordination and predictive support during rush hours ([CBC](https://www.cbc.ca/news/canada/toronto/ttc-delay-frustration-riders-councillors-1.7139906)).
+“Sorry, I’m running late — the TTC’s delayed again.”
 
-This project addresses that pain point by analyzing three years of TTC delay data (2022–2024) to uncover delay patterns and build both classification and regression models — predicting delay severity and duration with the goal of enabling faster operator response and better rider information systems, and surface insights that could inform both TTC operations and trip planning for riders.
+For many Toronto commuters, subway delays are a frustratingly common experience. Riders face long wait times, vague announcements, and limited insight into when service will resume. These challenges regularly surface across Reddit, X (formerly Twitter), TTC board meetings, and city council reports.
 
----
+In 2023 alone, over 23,000 subway delays were logged, affecting more than 625,000 daily riders on Line 1 ([TTC Annual Service Plan 2023](https://www.ttc.ca/about-the-ttc/projects-and-plans/Service_Planning/ASP-2023), [Toronto Star](https://www.thestar.com)). City councillors, riders, and TTC board members continue to call for data-informed solutions to improve service reliability and rider trust.
 
-## Learning Outcomes
+## Objective
 
-By the end of this sprint, we aim to:
+Build a forecasting tool that helps TTC operations and commuters anticipate:
 
-1. Apply technical skills across EDA, regression, classification modeling, and Git collaboration
-2. Build a portfolio-ready, reproducible data science project
-3. Work collaboratively using GitHub, Notion, and Slack
-4. Communicate results clearly through a README, visualizations, and a final presentation
+- Whether a controllable delay is likely to occur  
+- How long that delay might last  
+- Where and when the delay is most likely to happen  
 
----
+This tool supports:
 
-## Dataset Summary
+- Rush-hour service planning  
+- Real-time alert prioritization  
+- Data-informed communication with riders  
 
-* **Dataset**: [TTC Subway Delay Data](https://open.toronto.ca/dataset/ttc-subway-delay-data/)
-* **Publisher**: Toronto Transit Commission
-* **Years Covered**: 2022–2024 (\~50,000 rows)
-* **Last Refreshed**: June 30, 2025
-* **Contents**: Monthly delay logs across subway lines, including time, location, duration, and delay cause
-* **Objective**: Generate a reproducible machine learning pipeline for delay trend analysis and prediction
+## Scope
 
----
+- **Focus**: Controllable delays only (e.g., operational issues like infrastructure, staffing)
+- **Excludes**: External causes such as weather, medical emergencies, or police investigations
+- **Subway Lines in Scope**:
+  - Line 1 – Yonge–University  
+  - Line 2 – Bloor–Danforth  
+  - Line 4 – Sheppard  
+  - *Note: Line 3 (Scarborough RT) was decommissioned in 2023 and excluded due to incomplete data*
 
-## Industry Context
+## Sprint Timeline
 
-Urban transit systems around the world are adopting predictive analytics to improve reliability. TTC, serving millions in Toronto, logs frequent subway delays. By using historical delay data, this project explores how machine learning can enable smarter scheduling, early warnings, and better-informed operational decisions.
+| Date          | Milestone                                      |
+|---------------|------------------------------------------------|
+| July 17, 2025 | Project kickoff, scope alignment               |
+| July 18–20    | Initial data cleaning and EDA                  |
+| July 20–24    | Modeling (classification + regression)         |
+| July 23       | Extended data cleaning + feature engineering   |
+| July 24–25    | SHAP explainability + final visualizations     |
+| July 26, 2025 | Final 5-minute POC walkthrough presentation    |
 
----
+## Business Problem
 
-## Value Proposition
+How can TTC better forecast controllable subway delays to reduce rider uncertainty?
 
-* Help TTC operators anticipate and reduce severe delays using pattern recognition
-* Equip riders and route planners with earlier, more accurate delay predictions
-* Provide a generalizable ML pipeline that could support other transit systems worldwide
-* Demonstrate how open government datasets can power transparent, community-benefiting ML use cases anticipate and reduce severe delays using pattern recognition
-* Equip riders and route planners with earlier, more accurate delay predictions
-* Provide a generalizable ML pipeline that could support other transit systems worldwide
+- Over 23,000 delays occurred in 2023 alone  
+- Line 1 sees over 625,000 daily riders — yet alerts remain reactive and vague  
+- Delays during peak hours create bottlenecks, stress, and missed commitments  
 
----
+A well-scoped machine learning tool could help the TTC proactively mitigate delays, optimize dispatching, and improve the rider experience.
 
-## Tools & Libraries
+## Dataset Source
 
-This project is built entirely in **Python**, using a combination of core libraries and open-source tools:
-
-We use:
-
-* `pandas`, `numpy`, `matplotlib`, `seaborn`
-* `scikit-learn` and `xgboost` for modeling
-* `SHAP` (in progress) for model explainability
-* GitHub for version control
-* Slack, Notion, Trello for team coordination
-
----
-
-## Getting Started
-
-This is a 10-day team sprint running from **July 17 to July 26, 2025**. All work is tracked on GitHub and Trello with async check-ins.
-
----
-
-## Schedule and Project Plan
-
-| Date       | Phase                     | Key Goals                                               | Owner(s)      |
-| ---------- | ------------------------- | ------------------------------------------------------- | ------------- |
-| July 17    | Kickoff & Planning        | Finalize dataset, roles, create repo and README         | Everyone      |
-| July 18–19 | EDA & Feature Engineering | Clean data, engineer time/line features                 | Saad, Sahil   |
-| July 21    | Modeling (2024 only)      | Train XGBoost + Random Forest on cleaned 2024 data      | Sneha, Suchi  |
-| July 22    | SHAP + Regression         | Faiz: SHAP (w/ Sneha), Suchi: regression on `Min Delay` | Faiz, Suchi   |
-| July 23    | Clean All Years           | Merge cleaned 2022 (Sahil), 2023 (Saad), 2024 (Sneha)   | Team          |
-| July 24    | Model All Years           | Retrain models using full 2022–2024 dataset             | Sneha, Suchi  |
-| July 25    | README & Polishing        | Finalize charts, summaries, push repo                   | Val, Everyone |
-| July 26    | Final Presentation        | Present findings + submit final repo                    | Everyone      |
-
----
-
-## Team Members
-
-| Name                    | GitHub Handle                                    | Email                                                     | Contributions                           | Reflection Video |
-| ----------------------- | ------------------------------------------------ | --------------------------------------------------------- | --------------------------------------- | ---------------- |
-| Valerie Poon            | [@val-poon](https://github.com/val-poon)         | [valerieyfp@gmail.com](mailto:valerieyfp@gmail.com)       | PM, reporting, folder structure setup, documentation  | *TBD*            |
-| Sahil Modi              | [@smodi23](https://github.com/smodi23)           | [sahilmodi237@gmail.com](mailto:sahilmodi237@gmail.com)   | 2022 data cleaning, EDA                 | *TBD*            |
-| Saad Khan               | [@Saadkhan-188](https://github.com/Saadkhan-188) | [saadkhan188@gmail.com](mailto:saadkhan188@gmail.com)     | 2023 data cleaning, EDA                 | *TBD*            |
-| Sneha Gupta             | [@reachsneha02](https://github.com/reachsneha02) | [reachsneha02@gmail.com](mailto:reachsneha02@gmail.com)   | 2024 model training, visualizations     | *TBD*            |
-| Sucharitha Sundararaman | [@suchi-dev-ai](https://github.com/suchi-dev-ai) | [suchiraman22@gmail.com](mailto:suchiraman22@gmail.com)   | Regression modeling                     | *TBD*            |
-| Faiz Shaikh             | [@FaizS11](https://github.com/FaizS11)           | [faizkshaikh11@gmail.com](mailto:faizkshaikh11@gmail.com) | SHAP + model explainability             | *TBD*            |
-
----
-
-## Analytical Plan
-
-We use three years of historical TTC subway delay data (2022–2024) to:
-
-1. Clean and normalize noisy inputs (station names, line names, delay codes)
-2. Engineer new features including `Min Gap`, `Hour`, and `Code Frequency`
-3. Train classification models (XGBoost, Random Forest) to predict delay severity (`Delay_Class`)
-4. Train regression models to predict delay length in minutes (`Min Delay`)
-5. Evaluate performance using accuracy, macro-averaged F1 score (classification), and MAE/RMSE (regression)
-6. Use SHAP for explainability to understand which features most influence predictions
-
----
-
-## Known Risks
-
-* **Data Imbalance**: Long delays represent <1% of samples — mitigated by classification tuning and SMOTE (TBD)
-* **Messy Labels**: Inconsistent `Line` and `Code` fields required extensive mapping
-* **Model Interpretability**: SHAP integration pending due to library complexity
-* **Missing Context**: Some delays may reflect multi-modal issues (e.g. bus–subway interface), which are not modeled
-
----
+**Open Data Toronto – [Subway Delay Records](https://open.toronto.ca/dataset/ttc-subway-delay-data/)**
 
 ## Folder Structure
 
 ```
 DSI_ML_Team8/
-data/
-│   raw/         # Unmodified source data
-│   processed/   # Cleaned and engineered datasets
-│   external/    # External reference files
-notebooks/       # Jupyter notebooks for EDA and modeling
-models/          # Serialized models and performance metrics
-visuals/         # Charts and figures for reporting and slides
-reports/         # Final presentations, summaries, and documentation
-src/             # Python scripts and feature engineering tools
-.gitignore
-README.md
+├── data/
+│   ├── raw/                              # Original CSVs (2014–2025) from Open Data Toronto, including delay reason codes
+│   └── processed/
+│       └── ttc_delay_data_merged.csv         # Cleaned and merged dataset with decoded delay reasons (2022–2024)
+├── notebooks/                           # EDA, modeling, SHAP analysis
+├── outputs/                             # Visualizations and final report artifacts
+├── report/                              # Final slides and summary documents
+└── README.md
 ```
 
----
+## Methodology
 
-## Project Facilitators
+### Data Cleaning
 
-| Role             | Name              | Email                                                                       |
-| ---------------- | ----------------- | --------------------------------------------------------------------------- |
-| Tech Facilitator | Phil Van-Lane     | [phil.vanlane@mail.utoronto.ca](mailto:phil.vanlane@mail.utoronto.ca)       |
-| Learning Support | Aditya Kulkarni   | [aditya.kulkarni@mail.utoronto.ca](mailto:aditya.kulkarni@mail.utoronto.ca) |
-| Learning Support | Ernani Fantinatti | [ernanif@fantinatti.com](mailto:ernanif@fantinatti.com)                     |
-| Learning Support | Laura MacKew      | [lauramackew@gmail.com](mailto:lauramackew@gmail.com)                       |
+- Removed null, canceled, and unknown entries  
+- Filtered for controllable delays only  
+- Joined reason code definitions with main dataset  
 
----
+### Feature Engineering (in progress)
 
-## Other Resources
+- Extracted `hour`, `day_of_week`, and grouped `code` categories  
+- Created `code_freq` (frequency of delay reason per station/hour)  
+- Converted categorical features to numeric encodings  
 
-* [Team Trello (Kanban & Docs)](https://trello.com/invite/b/68784cb94b65902aba3eaf1b/ATTI02762885d9b118c31ccbfa7dacd1992b7739A217/🚇-our-1-week-ttc-delay-ml-mission)
-* [Slack Channel – DSI Certificate Program](https://uoft-dsi-certificates.slack.com/archives/C096UPGDKA4)
+### Modeling
+
+#### Binary Classification  
+- **Goal**: Forecast whether a controllable delay will occur  
+- **Algorithms**: Logistic Regression, Random Forest, XGBoost  
+- **Outcome**: XGBoost shows strong precision/recall using `hour`, `station`, `day_of_week`, and `code`  
+
+#### Regression  
+- **Goal**: Forecast duration of delay (in minutes)  
+- **Algorithms**: Linear Regression, Decision Tree, XGBoost  
+- **Outcome**: XGBoost yields best results; delay duration shows some linearity  
+
+#### Multi-Class Classification  
+- **Goal**: Forecast top 5 recurring delay reasons (`code`)  
+- **Algorithms**: Decision Tree, Random Forest (in progress)
+
+## Key Signals (Preliminary)
+
+- Predictive features with highest influence:  
+  - `hour`  
+  - `station`  
+  - `day_of_week`  
+  - `code` (mapped via lookup table)  
+- XGBoost is the top-performing model in both classification and regression  
+
+## Team & Contributions
+
+| Name                     | GitHub                                     | Email                        | Contributions                                    | Reflection Video |
+|--------------------------|--------------------------------------------|------------------------------|--------------------------------------------------|------------------|
+| Valerie Poon             | [@val-poon](https://github.com/val-poon)   | valerieyfp@gmail.com         | PM, reporting, folder setup, documentation       | TBD              |
+| Sahil Modi               | [@smodi23](https://github.com/smodi23)     | sahilmodi237@gmail.com       | 2022–2024 data wrangling, EDA                    | TBD              |
+| Saad Khan                | [@Saadkhan-188](https://github.com/Saadkhan-188) | saadkhan188@gmail.com  | Business framing, data visualization             | TBD              |
+| Sneha Gupta              | [@reachsneha02](https://github.com/reachsneha02) | reachsneha02@gmail.com | Classification models, experimentation           | TBD              |
+| Sucharitha Sundararaman | [@suchi-dev-ai](https://github.com/suchi-dev-ai) | suchiraman22@gmail.com | Regression modeling                              | TBD              |
+| Faiz Shaikh              | [@FaizS11](https://github.com/FaizS11)     | faizkshaikh11@gmail.com      | SHAP analysis, data visualization (in progress)  | TBD              |
+
+## Next Steps
+
+- Complete SHAP model explainability and finalize visualizations  
+- Finalize classification for top delay reason codes  
+- Deliver stakeholder-ready walkthrough slides and POC  
+
+## Acknowledgments
+
+Special thanks to the UofT DSI instructional team and sprint facilitators for their guidance throughout this project.
