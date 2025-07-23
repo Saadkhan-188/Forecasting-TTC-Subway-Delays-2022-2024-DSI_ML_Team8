@@ -50,7 +50,7 @@ This tool supports:
 ## Scope
 
 - **Focus**: Controllable delays only (e.g., operational issues like infrastructure, staffing)
-- **Excludes**: External causes such as weather, medical emergencies, or police investigations
+- **Excludes**: External causes that cannot be addressed by TTC operations, bound and vehicle no. 
 - **Subway Lines in Scope**:
   - Line 1 – Yonge–University  
   - Line 2 – Bloor–Danforth  
