@@ -21,11 +21,17 @@
 
 ## Problem Context
 
-“Sorry, I’m running late — the TTC’s delayed again.”
+> “Sorry, I’m running late — the TTC’s delayed again.”
 
-For many Toronto commuters, subway delays are a frustratingly common experience. Riders face long wait times, vague announcements, and limited insight into when service will resume. These challenges regularly surface across Reddit, X (formerly Twitter), TTC board meetings, and city council reports.
+For many Toronto commuters, subway delays are a frustratingly common experience. Riders face long wait times, vague announcements, and limited insight into when service will resume. These frustrations regularly surface on Reddit, X (formerly Twitter), TTC board meetings, and city council reports.
 
-In 2023 alone, over 23,000 subway delays were logged, affecting more than 625,000 daily riders on Line 1 ([TTC Annual Service Plan 2023](https://www.ttc.ca/about-the-ttc/projects-and-plans/Service_Planning/ASP-2023), [Toronto Star](https://www.thestar.com)). City councillors, riders, and TTC board members continue to call for data-informed solutions to improve service reliability and rider trust.
+In 2023 alone, the TTC logged over **23,000 subway delays**  
+([TTC Service Summary, 2022–2023](https://www.ttc.ca/-/media/Project/TTC/DevProto/Documents/Home/Transparency-and-accountability/Service-Summary_2022-11-20.pdf)),  
+impacting more than **625,000 daily riders on Line 1**  
+([TTC Subway Ridership, 2023–2024](https://cdn.ttc.ca/-/media/Project/TTC/DevProto/Documents/Home/Transparency-and-accountability/Subway-Ridership-20232024.pdf)).
+
+City councillors, transit users, and TTC board members continue to call for **data-informed strategies** to improve service reliability, transparency, and rider trust.
+
 
 ## Objective
 
