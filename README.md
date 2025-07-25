@@ -123,9 +123,10 @@ Below are the most frequently recurring delay codes in this dataset. These appea
 - Top 3 Stations vs. Union Station by Volume  
   ![Top 20 stations](visuals/top-20-station-delay-summary.png)
 
-- SHAP Value Plot: Hour of Day vs Line  
+- SHAP Summary Bar Plot: Top Features Impacting Delay Duration (XGBoost Regressor) 
   ![SHAP delay time vs line](visuals/shap-value-plots-show-that-the-hour-of-the-day-and-the-lines.png)
 
+  **SHAP value magnitude** reflects how much each feature contributes to delay duration prediction. Higher bars = more influence.
 ---
 
 ## Classification Modeling
