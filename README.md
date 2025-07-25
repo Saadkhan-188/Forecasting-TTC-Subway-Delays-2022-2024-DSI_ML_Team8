@@ -252,7 +252,7 @@ This model doesn’t just classify delays — it predicts actual delay length (i
 
 | Name | GitHub | Email | Contributions | Reflection Video |
 |------|--------|-------|----------------|------------------|
-| Valerie Poon | [@val-poon](https://github.com/val-poon) | valerieyfp@gmail.com | Project planning, documentation, final README | [Video link](https://github.com/Saadkhan-188/DSI_ML_Team8/blob/main/README.md) |
+| Valerie Poon | [@val-poon](https://github.com/val-poon) | valerieyfp@gmail.com | Project planning, documentation, final README | [Video link](https://youtu.be/ukwpFpKvtBU) |
 | Sahil Modi | [@smodi23](https://github.com/smodi23) | sahilmodi237@gmail.com | Data cleanup, insights on station/line patterns | TBD |
 | Saad Khan | [@Saadkhan-188](https://github.com/Saadkhan-188) | saadkhan188@gmail.com | Business pitch, GitHub setup, raw data API upload | TBD |
 | Sneha Gupta | [@reachsneha02](https://github.com/reachsneha02) | reachsneha02@gmail.com | Feature engineering, classification + regression | TBD |
