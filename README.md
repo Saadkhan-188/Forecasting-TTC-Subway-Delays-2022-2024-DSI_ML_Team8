@@ -99,7 +99,7 @@ These insights help support:
   ![Delays by hour/day/month](visuals/3-charts-of-frequency-of-delays-by-hour-and-day-and-month.png)
 
 - SHAP delay plots  
-  ![SHAP delay time vs line](visuals/shape-value-plots-show-that-the-hour-of-the-day-and-the-lines.png)
+  ![SHAP delay time vs line](visuals/shap-value-plots-show-that-the-hour-of-the-day-and-the-lines.png)
 
 - Average Delay per Subway Line  
   ![Average delay per line](visuals/average-ttc-delay-per-incident-by-subway-line.png)
