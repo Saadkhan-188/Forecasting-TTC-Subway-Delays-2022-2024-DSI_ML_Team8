@@ -272,7 +272,7 @@ This model doesn’t just classify delays — it predicts actual delay length (i
 | matplotlib & seaborn | Data visualization and exploratory analysis |
 | scikit-learn | Model training, preprocessing, and evaluation |
 | XGBoost | Gradient boosting for classification and regression |
+| Random Forest | Ensemble-based classification and regression model for delay prediction |
 | SHAP | Model interpretability and global feature analysis |
 | Jupyter Notebook | Development and experimentation environment |
-Random Forest
-Custom API for data download
+| Custom API for data download | Scripted data download from Toronto’s Open Data portal |
