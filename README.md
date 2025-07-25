@@ -64,8 +64,7 @@ These insights help support:
 ## Dataset Summary
 
 - **Source:** [Open Data Toronto - TTC Subway Delay Data](https://open.toronto.ca/dataset/ttc-subway-delay-data/)
-- **Used for Feature Engineering:** 26,467 cleaned entries from 2024
-- **Used for Modeling:** 68,984 cleaned entries from 2022–2024
+- **Used for Feature Engineering and Modeling:** 69,071 cleaned entries from 2022–2024
 
 ---
 
@@ -83,15 +82,15 @@ These insights help support:
 
 ### Data Cleaning
 - Corrected misspelled and inconsistent station names
-- Concatenated data across 3 years
-- Dropped non-informative features: RUN, BOUND, VEHICLE
+- Concatenated data across 3 years (2022-2024)
+- Dropped features with excessive null values: BOUND, VEHICLE
 
 ### Feature Engineering
-- Focused on 2024 data (26,467 records)
+- Focused on 2022-2024 data (69,071 records)
 - Derived hour, day, month, and min gap
-- One-hot encoding for delay codes and station names
+- Label encoding for delay codes and station names
 - Created delay severity classes for classification
-
+  
 ---
 
 ## Delay Code Legend
@@ -120,21 +119,17 @@ Below are the most frequently recurring delay codes in this dataset. These appea
 - Top 3 Delay Codes at 10 Top Stations  
   ![Top 3 delay codes](visuals/chart-with-top-3-delay-codes-at-10-top-stations-with-delays.png)
 
-- Top 3 Stations vs. Union Station by Volume  
+- Top 4 Stations vs. Union Station by Volume  
   ![Top 20 stations](visuals/top-20-station-delay-summary.png)
 
-- SHAP Summary Bar Plot: Top Features Impacting Delay Duration (XGBoost Regressor) 
-  ![SHAP delay time vs line](visuals/shap-value-plots-show-that-the-hour-of-the-day-and-the-lines.png)
-
-  **SHAP value magnitude** reflects how much each feature contributes to delay duration prediction. Higher bars = more influence.
 ---
 
 ## Classification Modeling
 
 - **Target:** Delay severity class  
-  - Class 0: No Delay (0 min)  
-  - Class 1: Short Delay (<10 min)  
-  - Class 2: Long Delay (>10 min)
+  - Class 0: Long Delay (>10 min)  
+  - Class 1: No Delay (0 min)
+  - Class 2: Short Delay (<10 min)
 
 - Models Tested: Random Forest, Tuned XGBoost
 
@@ -192,7 +187,7 @@ This model doesn’t just classify delays — it predicts actual delay length (i
 | `Station_Cleaned` | Cleaned subway station name |
 | `Code Description` | Reason for the delay |
 | `Min Gap` | Time since the previous train |
-| `Hour`, `Minute`, `DayOfWeek` | Time-based patterns (rush hours, weekends, etc.) |
+| `Hour`, `Minute`, `DayOfWeek` | Time-based patterns |
 
 ### Sample Training Data  
 ![Best parameters](visuals/regression-output.png)
@@ -210,20 +205,17 @@ This model doesn’t just classify delays — it predicts actual delay length (i
 ---
 
 ## Key Findings
-
-- **Delays peak during rush hours** on Line YU and Line BD.
-- **Repeat issues cluster** at major stations like Bloor-Yonge and Kennedy.
+- **Repeat issues cluster** at major stations like Bloor-Yonge and St. George.
 - **Top delay causes**:  
   `SUDP` (Unruly Passenger), `MUPAA` (Passenger Alarm – No Issue), `SUO` (Security/Other).
-- **SRT line delays are longer in early morning**;  
-  YU midday delays are **shorter and more manageable**.
+- ** Subway delays are more prominent during weekdays**;  
+  Specificially in mornings between 6-8AM and evenings between 3-6PM**.
 - **Delay severity is most influenced by operational variables**, not location:  
   The top predictors across models were `Min Gap`, `Hour of Day`, `Delay Code`, and `Station Name` (confirmed via SHAP).
 - **Short delays dominate**, but long delays have outsized impact:  
-  While most delays are <10 minutes, the few longer delays significantly skew average delay minutes, especially on the SRT line.
-- **Delays are less frequent early/late in the day**, but **more severe** when they occur — likely due to reduced staffing.
+  While most delays are < 10 minutes, the few longer delays significantly skew average delay minutes, especially on the SRT line.
 - **Certain delay codes repeat predictably at specific stations**:  
-  Bloor-Yonge and Kennedy often log recurring `SUDP` and `MUPAA` incidents — suggesting a need for targeted safety or communication strategies.
+  Top 4 stations often log recurring `SUDP` and `MUPAA` incidents — suggesting a need for targeted safety or communication strategies.
 - **Even "No Delay" entries contain signal**:  
   Zero-delay records still showed patterns in `min_gap` and `station`, helping models correctly classify the “No Delay” class.
 ---
@@ -241,7 +233,7 @@ This model doesn’t just classify delays — it predicts actual delay length (i
 | SUO | Security or passenger-other |
 | Min Gap | Minutes to next train |
 | Code_Freq | Frequency of delay code |
-| Min_Delay | Delay duration (minutes) |
+| Min Delay | Delay duration (minutes) |
 | Min_Delay_Log | Log-transformed delay |
 | Class 0/1/2 | Delay severity classes |
 | SHAP | Model explanation tool |
@@ -264,7 +256,7 @@ This model doesn’t just classify delays — it predicts actual delay length (i
 ## Next Steps
 
 - Final legends/labels in visualizations
-- Increase sample size: include historical records from 2014 onward
+- Increase sample size: include historical records 
 - Build internal dashboard or reporting tool to visualize forecasts and improve delay awareness across TTC operations
 - Investigate why delays occur less frequently at Union Station—despite being a high-traffic hub—and assess whether its operational strategies can be applied to other delay-prone stations
 
@@ -282,3 +274,5 @@ This model doesn’t just classify delays — it predicts actual delay length (i
 | XGBoost | Gradient boosting for classification and regression |
 | SHAP | Model interpretability and global feature analysis |
 | Jupyter Notebook | Development and experimentation environment |
+Random Forest
+Custom API for data download
