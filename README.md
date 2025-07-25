@@ -1,197 +1,205 @@
 # Forecasting TTC Subway Delays (2022–2024)
 
-## Table of Contents
+We explored three years of Toronto’s TTC subway delay logs to uncover patterns, build predictive models, and deliver insights that can help the TTC improve service reliability, optimize staffing, and inform commuters of potential issues—before they happen.  
+This project includes classification and regression models using real-world transit data, with interpretable outputs and visualizations to support stakeholder understanding and future action.
 
+---
+
+## Table of Contents
 - [Problem Context](#problem-context)
-- [Financial Impact](#financial-impact)
-- [Objective](#objective)
-- [Scope](#scope)
-- [Sprint Timeline](#sprint-timeline)
-- [Business Problem](#business-problem)
-- [Dataset Source](#dataset-source)
-- [Folder Structure](#folder-structure)
+- [Business Objective](#business-objective)
+- [Dataset Summary](#dataset-summary)
+- [Project Scope](#project-scope)
 - [Methodology](#methodology)
   - [Data Cleaning](#data-cleaning)
-  - [Feature Engineering](#feature-engineering-in-progress)
-  - [Modeling](#modeling)
-- [Key Signals (Preliminary)](#key-signals-preliminary)
-- [Risks & Limitations](#risks--limitations)
+  - [Feature Engineering](#feature-engineering)
+  - [Exploratory Data Analysis](#exploratory-data-analysis)
+  - [Classification Modeling](#classification-modeling)
+  - [Regression Modeling](#regression-modeling)
+- [Key Findings](#key-findings)
+- [Glossary](#glossary)
 - [Team & Contributions](#team--contributions)
 - [Next Steps](#next-steps)
-- [Acknowledgments](#acknowledgments)
 
+---
 
 ## Problem Context
 
-> “Sorry, I’m running late — the TTC’s delayed again.”
+“Sorry, I’m running late — the TTC’s delayed again.”
 
-For many Toronto commuters, subway delays are a frustratingly common experience. Riders face long wait times, vague announcements, and limited insight into when service will resume. These frustrations regularly surface on Reddit, X (formerly Twitter), TTC board meetings, and city council reports.
+TTC subway riders regularly experience unexpected delays — over time this has a negative impact, losing trust, credibility and reliability. Without knowing which delay types and times are most disruptive and likely to reoccur, TTC staff may struggle to prioritize response efforts and improve their customer experience.
 
-In 2023 alone, the TTC logged over **23,000 subway delays** ([TTC Service Summary, 2022–2023](https://www.ttc.ca/-/media/Project/TTC/DevProto/Documents/Home/Transparency-and-accountability/Service-Summary_2022-11-20.pdf)) 
+- In 2023 alone, the TTC logged over **23,000 subway delays** ([TTC Service Summary](https://www.ttc.ca/-/media/Project/TTC/DevProto/Documents/Home/Transparency-and-accountability/Service-Summary_2022-11-20.pdf))
+- **Line 1 alone impacts more than 625,000 daily riders** ([TTC Subway Ridership](https://cdn.ttc.ca/-/media/Project/TTC/DevProto/Documents/Home/Transparency-and-accountability/Subway-Ridership-20232024.pdf))
+- **Monthly subway delay minutes rose 53% since 2019**: from 3,853 → 5,903 minutes/month ([City Hall Watcher, 2023](https://www.cityhallwatcher.com/))
 
-This impacts more than **625,000 daily riders on Line 1** ([TTC Subway Ridership, 2023–2024](https://cdn.ttc.ca/-/media/Project/TTC/DevProto/Documents/Home/Transparency-and-accountability/Subway-Ridership-20232024.pdf))
-
-## Financial Impact
-
-Toronto’s subway delays aren’t just an inconvenience—they’re costly.
-
-A 2023 analysis by *City Hall Watcher* reported an average of **5,903 subway delay minutes per month**, up from **3,853 minutes** in 2019—a **53% increase** in service disruptions ([City Hall Watcher, 2023](https://toronto.cityhallwatcher.com/p/chw257)).
-
-While TTC doesn’t publish a per-minute cost of delays, we can extrapolate from international studies and Canadian context:
+**Estimated Economic Impact of Delays:**
 
 | Estimate Source | Metric | Delay Cost Assumption | Monthly Cost | Annual Cost |
-|------------------|--------|------------------------|--------------|-------------|
-| NYC Comptroller (2017) | Major delay cost (USD) | $50–$100/minute | ~$295,000+ | ~$3.5M+ CAD |
-| Modeled for TTC | 5,903 delay mins × $50 CAD/min | Conservative | ~$295,150 CAD | ~$3.54M CAD |
+|------------------|--------|------------------------|------------------|-----------------|
+| NYC Comptroller (2017) | Major delay cost | $50–$100/minute | ~$295,000+ | ~$3.5M+ CAD |
+| Modeled for TTC | 5,903 delay mins × $50 CAD/min | Conservative | ~$295,150 | ~$3.54M |
 
-(Source: [ITS Canada Transit Delay Study](https://www.itscanada.ca/files/ITS%20Student%20Competition_Alaa%20Itani.pdf))
+([ITS Canada Transit Delay Study](https://www.itscanada.ca/files/ITS%20Student%20Competition_Alaa%20Itani.pdf))
 
-To put this in context, the TTC’s 2025 operating budget is **$2.38 billion CAD**, with only **26% covered by fares**—the rest subsidized by public funds ([Global News, 2024](https://globalnews.ca/news/10702607/canada-public-transit-funding-shortfall/)).
+---
 
-### Why This Matters
+## Business Objective
 
-Our project aims to forecast delay trends and uncover contributing factors using TTC’s real-world data. This can help:
+We aimed to identify patterns in subway delay incidents and build predictive tools for:
 
-- Reduce unplanned service costs  
-- Support operational planning  
-- Improve rider satisfaction and public accountability  
-- Justify proactive infrastructure investment
+- Classifying delays by severity
+- Forecasting expected delay duration
+- Revealing operational hotspots by station, line, and delay code
 
+These insights help support:
 
-City councillors, transit users, and TTC board members continue to call for **data-informed strategies** to improve service reliability, transparency, and rider trust.
+- Proactive staffing and resource planning
+- Transparent public communication
+- Data-driven improvements to transit reliability
 
+---
 
-## Objective
+## Dataset Summary
 
-Build a forecasting tool that helps TTC operations and commuters anticipate:
+- **Source:** [Open Data Toronto - TTC Subway Delay Data](https://open.toronto.ca/dataset/ttc-subway-delay-data/)
+- **Used for Feature Engineering:** 26,467 cleaned entries from 2024
+- **Used for Modeling:** 68,984 cleaned entries from 2022–2024
 
-- Whether a controllable delay is likely to occur  
-- How long that delay might last  
-- Where and when the delay is most likely to happen  
+---
 
-This tool supports:
+## Project Scope
 
-- Rush-hour service planning  
-- Real-time alert prioritization  
-- Data-informed communication with riders
+- **Lines included:** Subway-only (Line 1: YU, Line 2: BD, Line 3: SRT, Line 4: SHP)
+  - YU = Yonge-University, BD = Bloor-Danforth, SRT = Scarborough RT, SHP = Sheppard Line
+- **Focus:** Controllable operational delays
+- **Excluded:** Bus/streetcar records, vehicle #, bound, external factors like weather
+- **Modeling Goal:** Build interpretable classification and regression models using XGBoost and Random Forest
 
-This tool is intended to be a **reproducible, reusable foundation** for future delay mitigation planning.
-
-## Scope
-
-- **Focus**: Controllable delays only (e.g., operational issues like infrastructure, staffing)
-- **Excludes**: External causes that cannot be addressed by TTC operations, bound and vehicle no. 
-- **Subway Lines in Scope**:
-  - Line 1 – Yonge–University  
-  - Line 2 – Bloor–Danforth  
-  - Line 4 – Sheppard  
-  - *Note: Line 3 (Scarborough RT) was decommissioned in 2023 and excluded due to incomplete data*
-
-## Sprint Timeline
-
-| Date          | Milestone                                      |
-|---------------|------------------------------------------------|
-| July 17, 2025 | Project kickoff, scope alignment               |
-| July 18–20    | Initial data cleaning and EDA                  |
-| July 20–24    | Modeling (classification + regression)         |
-| July 23       | Extended data cleaning + feature engineering   |
-| July 24–25    | SHAP explainability + final visualizations     |
-| July 26, 2025 | Final 5-minute POC walkthrough presentation    |
-
-## Business Problem
-
-How can TTC better forecast controllable subway delays to reduce rider uncertainty?
-
-- Over 23,000 delays occurred in 2023 alone  
-- Line 1 sees over 625,000 daily riders — yet alerts remain reactive and vague  
-- Delays during peak hours create bottlenecks, stress, and missed commitments  
-
-A well-scoped machine learning tool could help the TTC proactively mitigate delays, optimize dispatching, and improve the rider experience.
-
-## Dataset Source
-
-**Open Data Toronto – [Subway Delay Records](https://open.toronto.ca/dataset/ttc-subway-delay-data/)**
-
-## Folder Structure
-
-```
-DSI_ML_Team8/
-├── data/
-│   ├── raw/                              # Original CSVs (2014–2025) from Open Data Toronto, including delay reason codes
-│   └── processed/
-│       └── ttc_delay_data_merged.csv         # Cleaned and merged dataset with decoded delay reasons (2022–2024)
-├── notebooks/                           # EDA, modeling, SHAP analysis
-├── outputs/                             # Visualizations and final report artifacts
-├── report/                              # Final slides and summary documents
-└── README.md
-```
+---
 
 ## Methodology
 
 ### Data Cleaning
+- Filtered out incomplete records and non-subway lines
+- Cleaned inconsistent station and line names
+- Dropped non-informative features: RUN, BOUND, VEHICLE
 
-- Removed null, canceled, and unknown entries  
-- Filtered for controllable delays only  
-- Joined reason code definitions with main dataset  
+### Feature Engineering
+- Focused on 2024 data (26,467 records)
+- Derived hour, day, month, and min gap
+- One-hot encoding for delay codes and station names
+- Created delay severity classes for classification
 
-### Feature Engineering (in progress)
+---
 
-- Extracted `hour`, `day_of_week`, and grouped `code` categories  
-- Created `code_freq` (frequency of delay reason per station/hour)  
-- Converted categorical features to numeric encodings  
+## Exploratory Data Analysis
 
-### Modeling
+- Frequency of Delays by Time and Location  
+  ![Delays by hour/day/month](visuals/3-charts-of-frequency-of-delays-by-hour-and-day-and-month.png)
 
-#### Binary Classification  
-- **Goal**: Forecast whether a controllable delay will occur  
-- **Algorithms**: Logistic Regression, Random Forest, XGBoost  
-- **Outcome**: XGBoost shows strong precision/recall using `hour`, `station`, `day_of_week`, and `code`  
+- SHAP delay plots  
+  ![SHAP delay time vs line](visuals/shape-value-plots-show-that-the-hour-of-the-day-and-the-lines.png)
 
-#### Regression  
-- **Goal**: Forecast duration of delay (in minutes)  
-- **Algorithms**: Linear Regression, Decision Tree, XGBoost  
-- **Outcome**: XGBoost yields best results; delay duration shows some linearity  
+- Average Delay per Subway Line  
+  ![Average delay per line](visuals/average-ttc-delay-per-incident-by-subway-line.png)
 
-#### Multi-Class Classification  
-- **Goal**: Forecast top 5 recurring delay reasons (`code`)  
-- **Algorithms**: Decision Tree, Random Forest (in progress)
+- Top 3 Delay Codes at 10 Top Stations  
+  ![Top 3 delay codes](visuals/chart-with-top-3-delay-codes-at-10-top-stations-with-delays.png)
 
-## Key Signals (Preliminary)
+- Top 5 Stations by Repeated Delay Codes  
+  ![Repeated patterns](visuals/table-with-5-stations-with-top-3-amount-of-repeated-delay-codes.png)
 
-- Predictive features with highest influence:  
-  - `hour`  
-  - `station`  
-  - `day_of_week`  
-  - `code` (mapped via lookup table)  
-- XGBoost is the top-performing model in both classification and regression
+- Top 15 Stations by Volume  
+  ![Top 15 stations](visuals/top-15-stations-with-most-delay-incidents-table-top-10.png)
 
-## Risks & Limitations
+- Station-Specific Trends  
+  - Bloor-Yonge (day): ![Bloor-Yonge day](visuals/graph-with-top-3-most-frequent-delay-codes-per-day-at-bloor-yonge-station.png)  
+  - Kennedy (day): ![Kennedy day](visuals/graph-with-top-3-most-frequent-delay-codes-per-day-at-kennedy-station.png)  
+  - Kipling (day): ![Kipling day](visuals/graph-with-top-3-most-frequent-delay-codes-per-day-at-kipling-station.png)  
+  - St. George (day): ![St. George day](visuals/graph-with-top-3-most-frequent-delay-codes-per-day-at-st-george-station.png)  
+  - Bloor-Yonge (month): ![Bloor-Yonge month](visuals/graph-with-top-3-most-frequent-delay-codes-per-month-at-bloor-yonge-station.png)  
+  - Kennedy (month): ![Kennedy month](visuals/graph-with-top-3-most-frequent-delay-codes-per-month-at-kennedy-station.png)  
+  - Kipling (month): ![Kipling month](visuals/graph-with-top-3-most-frequent-delay-codes-per-month-at-kipling-station.png)  
+  - St. George (month): ![St. George month](visuals/graph-with-top-3-most-frequent-delay-codes-per-month-at-st-george-station.png)
 
-- **Short sprint window (10 days)**: Limited time restricted deeper hyperparameter tuning and model generalization.
-- **Data quality constraints**: Training was limited to 2022–2024 data due to time constraints, which may reduce model accuracy from underexposure to historical patterns.
-- **Scope exclusions**: External events (e.g., weather, emergency services, medical incidents) were excluded, despite their real-world impact on delays.
-- **Not production-ready**: Current prototype is not integrated with real-time systems or live data pipelines.
+---
 
-These risks highlight areas for future exploration and refinement.
+## Classification Modeling
 
+- **Target:** Delay severity class  
+  - Class 0: Short delay (0–2 min)  
+  - Class 1: Moderate delay (3–5 min)  
+  - Class 2: Long delay (>5 min)
+
+- Models Tested: Random Forest, Tuned XGBoost
+
+- Random Forest Classification Report  
+  ![Random Forest](visuals/classification-report-for-random-forest-classifier.png)
+
+- Tuned XGBoost Classification Report  
+  ![XGBoost](visuals/classification-report-tuned-xgboost.png)
+
+- SHAP Summary Bar Plot  
+  ![SHAP Summary](visuals/shap-summary-bar-plot-of-global-feature-importance.png)
+
+---
+
+## Regression Modeling
+
+- **Target:** Log-transformed delay duration
+
+- Best Parameters and Metrics  
+  ![Best parameters](visuals/best-parameters-rmse-r2-score-xgboost-regressor.png)
+
+- Predicted vs Actual Delay  
+  ![Scatter Plot](visuals/scatter-plot-predicted-vs-actual-xgboost-regressor-actual-min-delay-log-predicted-min-delay-log.png)
+
+---
+
+## Key Findings
+
+- Delays peak during rush hours on Line YU and Line BD
+- Repeat issues cluster at major stations like Bloor-Yonge and Kennedy
+- Top delay causes: SUDP, MUPAA, SUO
+- SRT line delays are longer in early morning; YU midday delays are shorter
+
+---
+
+## Glossary
+
+| Term | Meaning |
+|------|---------|
+| Line_YU | Yonge-University |
+| Line_BD | Bloor-Danforth |
+| Line_SRT | Scarborough RT |
+| Line_SHP | Sheppard Line |
+| SUDP | Unruly customer |
+| MUPAA | Passenger alarm, no issue found |
+| SUO | Security or passenger-other |
+| Min Gap | Minutes to next train |
+| Code_Freq | Frequency of delay code |
+| Min_Delay | Delay duration (minutes) |
+| Min_Delay_Log | Log-transformed delay |
+| Class 0/1/2 | Delay severity classes |
+| SHAP | Model explanation tool |
+
+---
 
 ## Team & Contributions
 
-| Name                     | GitHub                                     | Email                        | Contributions                                    | Reflection Video |
-|--------------------------|--------------------------------------------|------------------------------|--------------------------------------------------|------------------|
-| Valerie Poon             | [@val-poon](https://github.com/val-poon)   | valerieyfp@gmail.com         | PM, reporting, folder setup, documentation       | TBD              |
-| Sahil Modi               | [@smodi23](https://github.com/smodi23)     | sahilmodi237@gmail.com       | 2022–2024 data wrangling, EDA                    | TBD              |
-| Saad Khan                | [@Saadkhan-188](https://github.com/Saadkhan-188) | saadkhan188@gmail.com  | Business framing, data visualization             | TBD              |
-| Sneha Gupta              | [@reachsneha02](https://github.com/reachsneha02) | reachsneha02@gmail.com | Classification models, experimentation           | TBD              |
-| Sucharitha Sundararaman | [@suchi-dev-ai](https://github.com/suchi-dev-ai) | suchiraman22@gmail.com | Regression modeling                              | TBD              |
-| Faiz Shaikh              | [@FaizS11](https://github.com/FaizS11)     | faizkshaikh11@gmail.com      | SHAP analysis, data visualization (in progress)  | TBD              |
+| Name | GitHub | Email | Contributions | Reflection Video |
+|------|--------|-------|----------------|------------------|
+| Valerie Poon | [@val-poon](https://github.com/val-poon) | valerieyfp@gmail.com | Project planning, documentation, final README | TBD |
+| Sahil Modi | [@smodi23](https://github.com/smodi23) | sahilmodi237@gmail.com | Data cleanup, insights on station/line patterns | TBD |
+| Saad Khan | [@Saadkhan-188](https://github.com/Saadkhan-188) | saadkhan188@gmail.com | Business pitch, GitHub setup, raw data API upload | TBD |
+| Sneha Gupta | [@reachsneha02](https://github.com/reachsneha02) | reachsneha02@gmail.com | Feature engineering, classification + regression | TBD |
+| Sucharitha Sundararaman | [@suchi-dev-ai](https://github.com/suchi-dev-ai) | suchiraman22@gmail.com | Regression pipeline, model tuning, SHAP analysis | TBD |
+| Faiz Shaikh | [@FaizS11](https://github.com/FaizS11) | faizkshaikh11@gmail.com | Code owner, code review, final solution pitch | TBD |
+
+---
 
 ## Next Steps
 
-- Complete SHAP model explainability and finalize visualizations  
-- Finalize classification for top delay reason codes  
-- Deliver stakeholder-ready walkthrough slides and POC  
-
-## Acknowledgments
-
-Special thanks to the UofT DSI instructional team and sprint facilitators for their guidance throughout this project.
+- Increase sample size: include historical records from 2014 onward
+- Build internal dashboard or reporting tool to visualize forecasts and improve delay awareness across TTC operations
