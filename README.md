@@ -13,6 +13,7 @@ This project includes classification and regression models using real-world tran
 - [Methodology](#methodology)
   - [Data Cleaning](#data-cleaning)
   - [Feature Engineering](#feature-engineering)
+- [Delay Code Legend](#delay-code-legend)
   - [Exploratory Data Analysis](#exploratory-data-analysis)
   - [Classification Modeling](#classification-modeling)
   - [Regression Modeling](#regression-modeling)
@@ -81,8 +82,8 @@ These insights help support:
 ## Methodology
 
 ### Data Cleaning
-- Filtered out incomplete records and non-subway lines
-- Cleaned inconsistent station and line names
+- Corrected misspelled and inconsistent station names
+- Concatenated data across 3 years
 - Dropped non-informative features: RUN, BOUND, VEHICLE
 
 ### Feature Engineering
@@ -91,17 +92,20 @@ These insights help support:
 - One-hot encoding for delay codes and station names
 - Created delay severity classes for classification
 
-## Tools and Libraries Used
-| Tool / Library | Purpose |
-|----------------|---------|
-| **Python** | Core programming language for data analysis and modeling |
-| **pandas** | Data manipulation, cleaning, and feature engineering |
-| **NumPy** | Numerical operations and array handling |
-| **matplotlib** & **seaborn** | Data visualization and exploratory analysis |
-| **scikit-learn** | Model training, preprocessing, and evaluation (Random Forest, metrics) |
-| **XGBoost** | Advanced gradient boosting for classification and regression models |
-| **SHAP** | Model interpretability and global feature importance visualizations |
-| **Jupyter Notebook** | Interactive development environment for experimentation |
+---
+
+## Delay Code Legend
+
+Below are the most frequently recurring delay codes in this dataset. These appear across multiple charts and were key drivers in both classification and regression models.
+
+| Code | Description |
+|------|-------------|
+| SUDP | Unruly customer |
+| MUPAA | Passenger alarm, no issue found |
+| SUO | Security or passenger-other |
+| TUNO | No operator immediately available |
+| TUO | Operator-related delay |
+| TUS | Schedule-related delay |
 
 ---
 
@@ -110,47 +114,58 @@ These insights help support:
 - Frequency of Delays by Time and Location  
   ![Delays by hour/day/month](visuals/3-charts-of-frequency-of-delays-by-hour-and-day-and-month.png)
 
-- SHAP delay plots  
-  ![SHAP delay time vs line](visuals/shap-value-plots-show-that-the-hour-of-the-day-and-the-lines.png)
-
 - Average Delay per Subway Line  
   ![Average delay per line](visuals/average-ttc-delay-per-incident-by-subway-line.png)
 
 - Top 3 Delay Codes at 10 Top Stations  
   ![Top 3 delay codes](visuals/chart-with-top-3-delay-codes-at-10-top-stations-with-delays.png)
 
-- Top 5 Stations by Repeated Delay Codes  
-  ![Repeated patterns](visuals/table-with-5-stations-with-top-3-amount-of-repeated-delay-codes.png)
+- Top 3 Stations vs. Union Station by Volume  
+  ![Top 20 stations](visuals/top-20-station-delay-summary.png)
 
-- Top 15 Stations by Volume  
-  ![Top 15 stations](visuals/top-15-stations-with-most-delay-incidents-table-top-10.png)
-
-- Station-Specific Trends  
-  - Bloor-Yonge (day): ![Bloor-Yonge day](visuals/graph-with-top-3-most-frequent-delay-codes-per-day-at-bloor-yonge-station.png)  
-  - Kennedy (day): ![Kennedy day](visuals/graph-with-top-3-most-frequent-delay-codes-per-day-at-kennedy-station.png)  
-  - Kipling (day): ![Kipling day](visuals/graph-with-top-3-most-frequent-delay-codes-per-day-at-kipling-station.png)  
-  - St. George (day): ![St. George day](visuals/graph-with-top-3-most-frequent-delay-codes-per-day-at-st-george-station.png)  
-  - Bloor-Yonge (month): ![Bloor-Yonge month](visuals/graph-with-top-3-most-frequent-delay-codes-per-month-at-bloor-yonge-station.png)  
-  - Kennedy (month): ![Kennedy month](visuals/graph-with-top-3-most-frequent-delay-codes-per-month-at-kennedy-station.png)  
-  - Kipling (month): ![Kipling month](visuals/graph-with-top-3-most-frequent-delay-codes-per-month-at-kipling-station.png)  
-  - St. George (month): ![St. George month](visuals/graph-with-top-3-most-frequent-delay-codes-per-month-at-st-george-station.png)
+- SHAP Value Plot: Hour of Day vs Line  
+  ![SHAP delay time vs line](visuals/shap-value-plots-show-that-the-hour-of-the-day-and-the-lines.png)
 
 ---
 
 ## Classification Modeling
 
 - **Target:** Delay severity class  
-  - Class 0: Short delay (0–2 min)  
-  - Class 1: Moderate delay (3–5 min)  
-  - Class 2: Long delay (>5 min)
+  - Class 0: No Delay (0 min)  
+  - Class 1: Short Delay (<10 min)  
+  - Class 2: Long Delay (>10 min)
 
 - Models Tested: Random Forest, Tuned XGBoost
 
-- Random Forest Classification Report  
-  ![Random Forest](visuals/classification-report-for-random-forest-classifier.png)
+### Summary: Tuned XGBoost slightly outperformed Random Forest across all classes, especially for identifying long delays.
 
-- Tuned XGBoost Classification Report  
-  ![XGBoost](visuals/classification-report-tuned-xgboost.png)
+#### Random Forest Classifier Results
+
+| Class | Precision | Recall | F1-Score | Support |
+|-------|-----------|--------|----------|---------|
+| 0 (No Delay)        | 0.93 | 0.90 | 0.92 | 1,025 |
+| 1 (Short Delay)     | 0.99 | 1.00 | 0.99 | 8,499 |
+| 2 (Long Delay)      | 0.98 | 0.97 | 0.97 | 4,290 |
+| **Accuracy**        | —    | —    | **0.98** | 13,814 |
+| **Macro Avg**       | 0.97 | 0.96 | 0.96 | — |
+| **Weighted Avg**    | 0.98 | 0.98 | 0.98 | — |
+
+#### Tuned XGBoost Classifier Results
+
+| Class | Precision | Recall | F1-Score | Support |
+|-------|-----------|--------|----------|---------|
+| 0 (No Delay)        | 0.94 | 0.92 | 0.93 | 1,025 |
+| 1 (Short Delay)     | 0.99 | 1.00 | 1.00 | 8,499 |
+| 2 (Long Delay)      | 0.98 | 0.98 | 0.98 | 4,290 |
+| **Accuracy**        | —    | —    | **0.98** | 13,814 |
+| **Macro Avg**       | 0.97 | 0.96 | 0.97 | — |
+| **Weighted Avg**    | 0.98 | 0.98 | 0.98 | — |
+
+### Interpretation:
+- **Precision** reflects how many of the predicted delays in each class were correct.
+- **Recall** reflects how many actual delays the model successfully captured.
+- **F1-Score** balances both, making it a strong metric for delay prediction accuracy.
+- **High Class 2 performance** (F1 = 0.98) is key: it means we can **reliably flag long, costly delays** before they escalate.
 
 - SHAP Summary Bar Plot  
   ![SHAP Summary](visuals/shap-summary-bar-plot-of-global-feature-importance.png)
@@ -159,23 +174,57 @@ These insights help support:
 
 ## Regression Modeling
 
-- **Target:** Log-transformed delay duration
+We trained a log-transformed regression model to estimate **how long a delay might last**, given station, time, and operational context.
 
-- Best Parameters and Metrics  
-  ![Best parameters](visuals/best-parameters-rmse-r2-score-xgboost-regressor.png)
+- **Target Variable**: `Min Delay` (log-transformed)
+- **Best Model**: XGBoost Regressor (lowest RMSE, highest R²)
+- **Performance**: Strong performance across most delay durations, especially 2–5 mins
 
-- Predicted vs Actual Delay  
-  ![Scatter Plot](visuals/scatter-plot-predicted-vs-actual-xgboost-regressor-actual-min-delay-log-predicted-min-delay-log.png)
+### How to Read This Section
+
+This model doesn’t just classify delays — it predicts actual delay length (in minutes). By log-transforming the target, we handle extreme delay outliers more effectively and produce more stable forecasts. The scatter plot below compares predicted vs. actual delays: points closer to the red line indicate more accurate predictions.
+
+### Feature Highlights
+
+| Feature | Description |
+|---------|-------------|
+| `Station_Cleaned` | Cleaned subway station name |
+| `Code Description` | Reason for the delay |
+| `Min Gap` | Time since the previous train |
+| `Hour`, `Minute`, `DayOfWeek` | Time-based patterns (rush hours, weekends, etc.) |
+
+### Sample Training Data  
+![Best parameters](visuals/regression-output.png)
+
+### Predicted vs Actual Delay  
+![Scatter Plot](visuals/scatter-plot-predicted-vs-actual-xgboost-regressor-actual-min-delay-log-predicted-min-delay-log.png)
+
+### What This Means
+
+- **Operator-related delays** were more frequent on Line YU in early morning hours
+- **Staffing-related issues** like “No Operator Immediately Available” led to higher delay durations
+- **Min Gap** and **Time of Day** were consistently strong predictors of delay severity
+- The model demonstrates strong predictive power with log-transformed delay durations, especially between 2–5 minutes (as shown in the plot)
 
 ---
 
 ## Key Findings
 
-- Delays peak during rush hours on Line YU and Line BD
-- Repeat issues cluster at major stations like Bloor-Yonge and Kennedy
-- Top delay causes: SUDP, MUPAA, SUO
-- SRT line delays are longer in early morning; YU midday delays are shorter
-
+- **Delays peak during rush hours** on Line YU and Line BD.
+- **Repeat issues cluster** at major stations like Bloor-Yonge and Kennedy.
+- **Top delay causes**:  
+  `SUDP` (Unruly Passenger), `MUPAA` (Passenger Alarm – No Issue), `SUO` (Security/Other).
+- **SRT line delays are longer in early morning**;  
+  YU midday delays are **shorter and more manageable**.
+- **Delay severity is most influenced by operational variables**, not location:  
+  The top predictors across models were `Min Gap`, `Hour of Day`, `Delay Code`, and `Station Name` (confirmed via SHAP).
+- **Short delays dominate**, but long delays have outsized impact:  
+  While most delays are <10 minutes, the few longer delays significantly skew average delay minutes, especially on the SRT line.
+- **Delays are less frequent early/late in the day**, but **more severe** when they occur — likely due to reduced staffing.
+- **Certain delay codes repeat predictably at specific stations**:  
+  Bloor-Yonge and Kennedy often log recurring `SUDP` and `MUPAA` incidents — suggesting a need for targeted safety or communication strategies.
+- **Even "No Delay" entries contain signal**:  
+  Zero-delay records still showed patterns in `min_gap` and `station`, helping models correctly classify the “No Delay” class.
 ---
 
 ## Glossary
@@ -218,3 +267,17 @@ These insights help support:
 - Build internal dashboard or reporting tool to visualize forecasts and improve delay awareness across TTC operations
 - Investigate why delays occur less frequently at Union Station—despite being a high-traffic hub—and assess whether its operational strategies can be applied to other delay-prone stations
 
+---
+
+## Tools and Libraries Used
+
+| Tool / Library | Purpose |
+|----------------|---------|
+| Python | Core programming language for data analysis and modeling |
+| pandas | Data manipulation, cleaning, and feature engineering |
+| NumPy | Numerical operations and array handling |
+| matplotlib & seaborn | Data visualization and exploratory analysis |
+| scikit-learn | Model training, preprocessing, and evaluation |
+| XGBoost | Gradient boosting for classification and regression |
+| SHAP | Model interpretability and global feature analysis |
+| Jupyter Notebook | Development and experimentation environment |
