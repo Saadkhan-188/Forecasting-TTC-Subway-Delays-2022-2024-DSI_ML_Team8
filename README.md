@@ -91,6 +91,18 @@ These insights help support:
 - One-hot encoding for delay codes and station names
 - Created delay severity classes for classification
 
+## Tools and Libraries Used
+| Tool / Library | Purpose |
+|----------------|---------|
+| **Python** | Core programming language for data analysis and modeling |
+| **pandas** | Data manipulation, cleaning, and feature engineering |
+| **NumPy** | Numerical operations and array handling |
+| **matplotlib** & **seaborn** | Data visualization and exploratory analysis |
+| **scikit-learn** | Model training, preprocessing, and evaluation (Random Forest, metrics) |
+| **XGBoost** | Advanced gradient boosting for classification and regression models |
+| **SHAP** | Model interpretability and global feature importance visualizations |
+| **Jupyter Notebook** | Interactive development environment for experimentation |
+
 ---
 
 ## Exploratory Data Analysis
@@ -201,5 +213,8 @@ These insights help support:
 
 ## Next Steps
 
+- Final legends/labels in visualizations
 - Increase sample size: include historical records from 2014 onward
 - Build internal dashboard or reporting tool to visualize forecasts and improve delay awareness across TTC operations
+- Investigate why delays occur less frequently at Union Station—despite being a high-traffic hub—and assess whether its operational strategies can be applied to other delay-prone stations
+
