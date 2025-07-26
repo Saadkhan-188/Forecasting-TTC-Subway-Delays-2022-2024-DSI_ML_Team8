@@ -196,6 +196,10 @@ This model doesn’t just classify delays — it predicts actual delay length (i
 ### Predicted vs Actual Delay  
 ![Scatter Plot](visuals/scatter-plot-predicted-vs-actual-xgboost-regressor-actual-min-delay-log-predicted-min-delay-log.png)
 
+### Top 3 Features Influencing Subway Delay Predictions 
+![SHAP summary](visuals/SHAP-graph-top-3.png)
+
+
 ### What This Means
 
 - **Operator-related delays** were more frequent on Line YU in early morning hours
