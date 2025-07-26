@@ -117,7 +117,7 @@ Below are the most frequently recurring delay codes in this dataset. These appea
 - Average Delay per Subway Line  
   ![Average delay per line](visuals/average-ttc-delay-per-incident-by-subway-line.png)
 
-- Top 3 Delay Codes at 10 Top Stations  
+- Top 3 Delay Codes at Top 4 Stations vs. Union Station  
   ![Top 3 delay codes](visuals/chart-with-top-3-delay-codes-at-10-top-stations-with-delays.png)
 
 - Top 4 Stations vs. Union Station by Volume  
