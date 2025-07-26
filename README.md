@@ -102,8 +102,9 @@ Below are the most frequently recurring delay codes in this dataset. These appea
 | SUDP | Unruly customer |
 | MUPAA | Passenger alarm, no issue found |
 | SUO | Security or passenger-other |
-| TUNO | No operator immediately available |
+| TUNOA | No operator immediately available |
 | TUO | Operator-related delay |
+| TUNIP | Operator Not In Position |
 | TUS | Schedule-related delay |
 
 ---
