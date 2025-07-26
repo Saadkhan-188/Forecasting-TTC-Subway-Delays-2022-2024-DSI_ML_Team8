@@ -213,8 +213,8 @@ This model doesn’t just classify delays — it predicts actual delay length (i
 - **Repeat issues cluster** at major stations like Bloor-Yonge and St. George.
 - **Top delay causes**:  
   `SUDP` (Unruly Passenger), `MUPAA` (Passenger Alarm – No Issue), `SUO` (Security/Other).
-- ** Subway delays are more prominent during weekdays**;  
-  Specificially in mornings between 6-8AM and evenings between 3-6PM**.
+- **Subway delays are more prominent during weekdays**;  
+  Specificially in mornings between 6-8AM and evenings between 3-6PM.
 - **Delay severity is most influenced by operational variables**, not location:  
   The top predictors across models were `Min Gap`, `Hour of Day`, `Delay Code`, and `Station Name` (confirmed via SHAP).
 - **Short delays dominate**, but long delays have outsized impact:  
