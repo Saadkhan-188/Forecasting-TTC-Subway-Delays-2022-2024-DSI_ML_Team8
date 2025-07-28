@@ -252,7 +252,7 @@ This model doesn’t just classify delays — it predicts actual delay length (i
 | Valerie Poon | [@val-poon](https://github.com/val-poon) | valerieyfp@gmail.com | Project planning, documentation, final README | [Video link](https://youtu.be/ukwpFpKvtBU) |
 | Sahil Modi | [@smodi23](https://github.com/smodi23) | sahilmodi237@gmail.com | Data cleanup, insights on station/line patterns | TBD |
 | Saad Khan | [@Saadkhan-188](https://github.com/Saadkhan-188) | saadkhan188@gmail.com | Business pitch, GitHub setup, raw data API upload | [Youtube Video](https://youtu.be/DSXkkpaK9M0) |
-| Sneha Gupta | [@reachsneha02](https://github.com/reachsneha02) | reachsneha02@gmail.com | Feature engineering, classification + regression | TBD |
+| Sneha Gupta | [@reachsneha02](https://github.com/reachsneha02) | reachsneha02@gmail.com | Feature engineering, classification + regression |  [Video link](https://youtu.be/QjvRg73T9iY) |
 | Sucharitha Sundararaman | [@suchi-dev-ai](https://github.com/suchi-dev-ai) | suchiraman22@gmail.com | Regression pipeline, model tuning, SHAP analysis | [Video Link](https://drive.google.com/file/d/10eqNwlJG_Zgw0ENAtlUi8FWknHTvmMnb/view?usp=sharing) |
 | Faiz Shaikh | [@FaizS11](https://github.com/FaizS11) | faizkshaikh11@gmail.com | Code owner, code review, final solution pitch | TBD |
 
