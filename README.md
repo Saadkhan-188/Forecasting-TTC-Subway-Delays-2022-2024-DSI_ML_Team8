@@ -47,13 +47,15 @@ TTC subway riders regularly experience unexpected delays — over time this has 
 
 ## Business Objective
 
-We aimed to identify patterns in subway delay incidents and build predictive tools for:
+### Solution
 
+We aimed to identify patterns in subway delay incidents and build predictive tools for:
 - Classifying delays by severity
 - Forecasting expected delay duration
 - Revealing operational hotspots by station, line, and delay code
 
-These insights help support:
+
+### Intended Outcome
 
 - Proactive staffing and resource planning
 - Transparent public communication
