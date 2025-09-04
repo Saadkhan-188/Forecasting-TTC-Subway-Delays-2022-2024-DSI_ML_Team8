@@ -57,7 +57,6 @@ We aimed to identify patterns in subway delay incidents and build predictive too
 
 ### Intended Outcome
 
-- Proactive staffing and resource planning
 - Transparent public communication
 - Data-driven improvements to transit reliability
 
